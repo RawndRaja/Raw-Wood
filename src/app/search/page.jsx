@@ -29,10 +29,8 @@ export default function SearchPage() {
       
       axios.defaults.baseURL = "https://api.themoviedb.org/3"
       const response = await axios.get(`/search/multi?query=${searchQuery}&api_key=20e6314a95e5453b320ad3775fb810d6`)
-      console.log(response.data.results)
       // Validate the response structure
       const results = Array.isArray(response.data.results) ? response.data.results : []
-      console.log('response', response)
       setData(results)
     } catch (err) {
       setError('Failed to fetch results')

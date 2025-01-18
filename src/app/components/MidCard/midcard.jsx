@@ -4,7 +4,6 @@ import Card from '../RouteCard/card';
 export default function CardDatas({ data, param  }) {
   // Check if data exists and is an array
   if (!data || !Array.isArray(data)) {
-    console.log('log data', data)
     console.error('Data is not valid:', data);
     return <div>Loading...</div>;
   }

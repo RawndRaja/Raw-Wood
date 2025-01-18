@@ -22,22 +22,23 @@ export default function Page() {
 
   const getImage = async () => {
     try {
-      console.log('param', Params.id);
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
       axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
       const response = await axios.get(`tv/${Params.id}?api_key=20e6314a95e5453b320ad3775fb810d6`);
       const Crew = await axios.get(`tv/${Params.id}/credits?api_key=20e6314a95e5453b320ad3775fb810d6`);
       const recommendation = await axios.get(`tv/${Params.id}/recommendations?api_key=20e6314a95e5453b320ad3775fb810d6`)
       const similar = await axios.get(`tv/${Params.id}/similar?api_key=20e6314a95e5453b320ad3775fb810d6`)
+
       setRecommendation(recommendation.data.results)
+
       setSimilar(similar.data.results)
-      console.log('Crew',Crew)
-      console.log('response',response)
+
       setCast(Crew.data.cast)
+
       setCrew(Crew.data.crew)
 
-      console.log(response.data)
       setData(response.data); // Update the data state
+      
       setIsLoading(false); // Set isLoading to false
     } catch (error) {
       console.log(error);
