@@ -52,7 +52,7 @@ useEffect(() => {
 
         {/* Search Bar */}
         <form className='flex  flex-row lg:mt-6' onSubmit={(e) => (e.preventDefault())}>
-        <div className=" ml-6 lg:block lg:ml-[4vw] lg:mt-[-2vw] ">
+        <div className=" ml-6 lg:block lg:ml-[8vw] lg:mt-[-2vw] ">
           
           <input
             className="hidden border w-[30vw] border-black p-2 lg:block rounded-md lg:w-[20vw] text-black
@@ -67,7 +67,7 @@ useEffect(() => {
         <button onClick={search} className="hidden bg-white h-10 w-10 justify-center pl-2 rounded-md ml-[30vw] lg:mt-[-2vw]
         md:ml-[55vw] sm:ml-56 lg:ml-8 sm:block"><Menu /></button>
         </form>
-        <div className=' ml-20 sm:ml-0 lg:mt-1 '><Drawer /></div>
+        <div className=' ml-32 sm:ml-0 lg:mt-1 '><Drawer /></div>
       </div>
 
 
