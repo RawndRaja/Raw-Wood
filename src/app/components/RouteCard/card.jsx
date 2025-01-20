@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +12,7 @@ export default function Card({ data, param }) {
     <div className="relative group sm:justify-center items-center lg:px-0 cursor-pointer w-80 lg:w-full">
       <Link href={`${param}/${data.id}`}>
         <div className="overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
-          <Image
+          <img
             src={imageUrl+(`${data.poster_path}` ||`${data.profile_path}` ) } // Fallback image
             alt={data.title || "Movie poster"}
             width={300}

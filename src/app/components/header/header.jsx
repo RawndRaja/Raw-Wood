@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Drawer from '@/app/components/drawer/drawer';
 import Menu from '@/app/components/search/search'
@@ -36,7 +35,7 @@ useEffect(() => {
       <div className="flex flex-row items-center h-20 w-[100dvw] md:mt-[1vw] bg-neutral-500 ">
         {/* Logo */}
         <Link href={'/'} className="flex-shrink-0">
-          <Image
+          <img
             src={'/images/logo.png'}
             className="py-2 mt-6 h-24 w-40 sm:h-[20vh] md:h-[18vh] lg:ml-[2vw] md:w-[30vw] lg:w-[15vw] lg:h-[15vh]"
             width={160}
