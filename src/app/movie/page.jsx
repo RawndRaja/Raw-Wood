@@ -14,18 +14,20 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
   const [TotalPage, setTotalPage] = useState('')
   const [Genre, setGenre] = useState('')
+  const [Param, setParam] = useState('');
   const Params =  usePathname()
-  const urlParams = new URLSearchParams(window.location.search);
+  if (typeof window !== "undefined") {
+    const urlParams = new URLSearchParams(window.location.search);
+    setParam(urlParams || '')
+  }
   const getImage = async () =>{
-    const page = urlParams.get('page') || '1';
-    console.log('data', page)
-    const genre = urlParams.get('genre') || '28'
+    const page = Param.get('page') || '1';
+    const genre = Param.get('genre') || '28'
     axios.defaults.baseURL = "https://api.themoviedb.org/3";
     
     axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
     const response = await axios.get(`discover${Params}?page=${page}&api_key=20e6314a95e5453b320ad3775fb810d6&include_adult=false&include_video=false&language=en-US&primary_release_year=2024&sort_by=popularity.desc&with_genres=${genre}`)
     setMovieData(response.data.results)
-    console.log('page',response.data.total_pages);
     
     setPage(response.data.page)
     setTotalPage(response.data.total_pages)
