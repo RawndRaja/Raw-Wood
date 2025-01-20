@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   description: "Your New Movies Hub",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,6 +37,10 @@ export default function RootLayout({
 }>) {
   return (
        <html lang='en' suppressHydrationWarning>
+        <head>
+        <meta name="google-adsense-account" content="ca-pub-5692786874442235" />
+        </head>
+
     
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased layout-body pb-16 lg:pb-0`}
