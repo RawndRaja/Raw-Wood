@@ -52,13 +52,47 @@ export default function Page() {
   useEffect(() => {
     getImage();
   }, [Params.id]); // Add Params.id as a dependency to re-run the effect when the id changes
+  const formatMovieTitle = (title) => {
+  return title
+    ?.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')  // Remove special characters
+    .replace(/\s+/g, '-')          // Replace spaces with dashes
+    .trim();                       // Remove trailing spaces
+};
 
   if (isLoading) {
     return <div><div className='h-24'></div><div className='text-4xl text-center'>Loading...</div></div>
   }
 
   return (
+    
     <div>
+            <div popover='auto' className='rounded-lg w-full sm:w-96 bg-neutral-700 backdrop-blur-md h-96 text-white lg:w-[45vw] lg:h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' id="suggest">
+      <div className='text-center lg:text-xl' >
+      Watch Your Favaourate movies Now.⚡ <br />
+      Top Movies 🎥 Avilable at Raw Wood Cinemas.
+        <div className='mt-6'>
+          <h1>Recommended for Indian Movies 🎥 and Hollywood Movies 🎥.</h1>
+          <a className='mt-2' 
+            href={`https://www.watch-movies.com.pk/?s=${(data.title || data.name)}`} 
+            target='_blank'>
+            <button className='mt-3 w-80 h-16 lg:h-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>
+              Watch Now. <br /> at watch-movies.com.pk
+            </button>
+          </a>
+        </div>
+        <div className='mt-4'>
+          <h1>Recommended for Hollywood Movies.🎥</h1>
+          <a className='mt-2' 
+            href={`https://cineb.rs/search/${formatMovieTitle(data.title || data.name)}`} 
+            target='_blank'>
+            <button className='mt-3 h-16 lg:h-full w-80 py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>
+              Watch Now. <br /> at cineb.rs
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
       <div className='h-20 lg:h-20'></div>
       <div className='w-full h-[400px] relative hidden lg:block'>
         <div className='w-full h-full '>
@@ -71,14 +105,20 @@ export default function Page() {
         </div>
         <div className='absolute w-full h-full top-0 bg-gradient-to-t from-neutral-900/90 to-transparent'></div>
       </div>
-      <div className='container mx-auto px-3 py-16 lg:py-0 flex flex-col gap-5 lg:flex-row '>
-          <div className=' relative mx-auto lg:-mt-28 lg:mx-0 w-fit min-w-60'>
+      <div className='container mx-auto px-3 py-16 lg:py-0 flex flex-col gap-5 lg:flex-row'>
+          <div className=' relative mx-auto ml-8 sm:ml-0 lg:ml-0 lg:-mt-28 lg:mx-0 w-fit min-w-60'>
             <img           
           src={imageUrl+(`${data.poster_path}` ||`${data.profile_path}` ) } // Fallback image
           alt={data.title || "Movie poster"}
           className="object-cover w-60 h-80 rounded-md "
           loading="lazy" />
-          <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
+        
+        <div>
+        <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Watch Trailer</button>
+          <button popoverTarget='suggest' className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-yellow-400 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
+          <a href={`https://hdhub4u.spa/?s=${data.title || data.name}`} target='_blank' ><button className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-green-500 to-green-700 hover:scale-105 transition-all'>Download Now</button></a>
+        </div>
+
           </div>
           <div className='px-8'>
             <h2 className=' text-3xl font-bold text-white lg:px-0'> {data.title || data.name} </h2>

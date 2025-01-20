@@ -31,7 +31,7 @@ useEffect(() => {
   )
 
   return (
-    <div className='mt-[-1vw] fixed opacity-80 z-40 '>
+    <div className='mt-[-1vw] fixed opacity-80 z-40 header-body-all-page-raw-wood'>
       {/* Logo and Links Container */}
       <div className="flex flex-row items-center h-20 w-[100dvw] md:mt-[1vw] bg-neutral-500 ">
         {/* Logo */}

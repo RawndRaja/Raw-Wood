@@ -1,0 +1,48 @@
+import { NextResponse } from 'next/server'
+import User from "../Modules/userModule";
+import nodemailer from 'nodemailer'
+import bcryptjs from 'bcryptjs';
+
+export const sendEmail = async({email, emailType, userId}:any) => {
+try {
+       
+    const hashedToken = await bcryptjs.hash(userId.toString(), 10) || '';
+
+    if (emailType === 'VERIFY') {
+        
+        await User.findByIdAndUpdate(userId, {$set: {verifyToken: hashedToken,verifyTokenExpiry: Date.now() + 3600000}})
+        
+    }
+    if (emailType === 'FORGET') {
+        
+        await User.findByIdAndUpdate(userId, {$set: {forgotPasswordToken: hashedToken,forgotPasswordTokenExpiry: Date.now() + 3600000}})
+        
+    }
+
+    // Looking to send emails in production? Check out our Email API/SMTP product!
+   const transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: `${process.env.mailer_user}`,
+      pass: `${process.env.mailer_pass}`
+    }
+  });
+
+  
+// Configure the mailoptions object
+const mailOptions = {
+    from: 'RawWood@verify.com',
+    to: email,
+    subject: emailType  === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password',
+    text: "please"
+  };
+  const mailresponse = await transport.sendMail
+  (mailOptions);
+  return mailresponse;
+
+    } catch (error: any) {
+        return NextResponse.json({error: error.message}, {status: 500})
+    }
+
+}
