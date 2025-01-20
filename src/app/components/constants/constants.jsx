@@ -19,6 +19,46 @@ export const Links = [
         link: '/movie',
     }
 ]
+export const genres = [
+    {
+        label: 'Action',
+        id: 28
+    },
+    {
+        label: 'Thriller',
+        id: 53
+    },
+    {
+        label: 'Drama',
+        id: 18
+    },
+    {
+        label: 'Comedy',
+        id: 35
+    },
+    {
+        label: 'Horror',
+        id: 27
+    },
+    {
+        label: 'Romance',
+        id: 10749
+    },
+    {
+        label: 'Sci-Fi',
+        id: 878
+    },
+    {
+        label: 'Adventure',
+        id: 12
+    },
+    {
+        label: 'Mystery',
+        id: 9648
+    }
+];
+
+console.log(genres);
 const Constants = [
     {
         label: 'Home',

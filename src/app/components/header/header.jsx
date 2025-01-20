@@ -65,7 +65,7 @@ useEffect(() => {
         </div>
         {/* Sign IN Button */}
         <button onClick={search} className="hidden bg-white h-10 w-10 justify-center pl-2 rounded-md ml-[30vw] lg:mt-[-2vw]
-        md:ml-[55vw] sm:ml-56 lg:ml-8 sm:block"><Menu /></button>
+        md:ml-[52vw] sm:ml-72 lg:ml-8 sm:block"><Menu /></button>
         </form>
         <div className=' ml-32 sm:ml-0 lg:mt-1 '><Drawer /></div>
       </div>
