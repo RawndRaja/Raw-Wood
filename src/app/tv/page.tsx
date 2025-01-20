@@ -4,9 +4,11 @@ import { usePathname } from 'next/navigation'
 import axios from 'axios'
 import CardData from '../components/MidCard/midcard'
 import NextCard from'../components/NextCard/next'
+import Loader from '@/app/components/Loader/loader'
 export default function Page() {
   const [TvData, setTVData] = useState([])
   const [Page, setPage] = useState('')
+  const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
   const [TotalPage, setTotalPage] = useState('')
   const Params =  usePathname()
   const getImage = async () =>{
@@ -20,11 +22,23 @@ export default function Page() {
     
     setPage(response.data.page)
     setTotalPage(response.data.total_pages)
+    setIsLoading(false); // Set isLoading to false
   }
 useEffect(() => {
   getImage();
         
 }, [])
+  if (isLoading) {
+    return (
+    <div>
+      <div className='h-24 relative mt-40'>
+      <div className='absolute left-1/2 -translate-x-1/2'><Loader />
+      </div>
+
+      </div>
+      </div>
+  )
+  }
 
   
   return (

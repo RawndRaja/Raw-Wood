@@ -7,6 +7,7 @@ import moment from 'moment'
 import Divider from '@/app/components/Divider/divider'
 import Scroll from '@/app/components/ScrollBar/scroll'
 import VideoPlay from '@/app/components/Video/video'
+import Loader from '@/app/components/Loader/loader'
 
 export default function Page() {
   const imageUrl = useSelector(state => state.RawWoods.imageUrl); // Fallback image
@@ -61,7 +62,15 @@ export default function Page() {
 };
 
   if (isLoading) {
-    return <div><div className='h-24'></div><div className='text-4xl text-center'>Loading...</div></div>
+    return (
+    <div>
+      <div className='h-24 relative mt-40'>
+      <div className='absolute left-1/2 -translate-x-1/2'><Loader />
+      </div>
+
+      </div>
+      </div>
+  )
   }
 
   return (
