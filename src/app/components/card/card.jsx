@@ -3,6 +3,7 @@ import React from 'react'
 import { v4 as uuid } from "uuid";
 import { useSelector } from 'react-redux'
 import Link from 'next/link';
+import Image from 'next/image';
 const id = uuid()
 
 export default function Card({data, trending, index, type}) {
@@ -11,7 +12,7 @@ export default function Card({data, trending, index, type}) {
     return (  
       <Link target='_blank' href={`/${type === 'tv' ? "tv" : data.media_type || 'movie'}/${data.id}`}>
     <div className="flex-shrink-0 hover:scale-105 mt-10 relative overflow-hidden min-w-[230px]">
-        <img className='rounded-sm object-cover ' key={id} loading='lazy' width={300} height={300} src={imageUrl + data?.poster_path} alt="Card Image" />
+        <Image className='rounded-sm object-cover ' key={id} loading='lazy' width={300} height={300} src={imageUrl + data?.poster_path} alt="Card Image" />
       <div className='absolute top-4 bg-neutral-700 opacity-70 px-3 py-4 rounded-r-full'>
         {
           trending && (
