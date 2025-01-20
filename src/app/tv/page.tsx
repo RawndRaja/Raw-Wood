@@ -53,7 +53,7 @@ useEffect(() => {
   param={Params} 
 />
 <div className='h-20'>
-  <NextCard page={Page} totalPage={TotalPage} />
+  <NextCard page={Page} totalPage={TotalPage} genre={'10749'} />
 </div>
         </div>
       </div>
