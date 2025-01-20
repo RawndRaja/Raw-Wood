@@ -25,10 +25,10 @@ export default function Scroll({ data, heading, type }) {
 
     return (
         <div>
-            <div className="cont mx-auto px-3 my-10 h-100">
+            <div className="cont mx-auto px-3 my-10 h-100 ">
                 <h1 className='text-xl lg:text-2xl font-bold mb-2 px-12 text-white'>{heading}</h1>
                 <div className='overflow-hidden relative'>
-                    <div ref={containerStyle} className="grid grid-cols-[repeat(auto-fit,250px)]  gap-4 px-5 grid-flow-col overflow-y-hidden  h-full relative z-10 scroll-smooth scroll-none">
+                    <div ref={containerStyle} className="grid grid-cols-[repeat(auto-fit,250px)] h-[70vh]  gap-4 px-5 grid-flow-col overflow-y-hidden  relative z-10 scroll-smooth scroll-none">
                         {
                             data.map((item, index) => (
                                 <Card
