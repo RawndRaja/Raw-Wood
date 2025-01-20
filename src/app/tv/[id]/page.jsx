@@ -183,8 +183,8 @@ export default function Page() {
           </div>
       </div>
               <div>
-                <Scroll data={similar} heading={"Similar TV Shows"} type={"TV Show"} />
-                <Scroll data={Recommendation} heading={"Recommended TV Shows"} type={"TV Show"} />
+                <Scroll data={similar} heading={"Similar TV Shows"} type={"tv"} />
+                <Scroll data={Recommendation} heading={"Recommended TV Shows"} type={"tv"} />
               </div>
               <div>
               {

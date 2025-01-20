@@ -57,8 +57,6 @@ export const genres = [
         id: 9648
     }
 ];
-
-console.log(genres);
 const Constants = [
     {
         label: 'Home',
