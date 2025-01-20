@@ -16,11 +16,12 @@ export default function Page() {
   const [Genre, setGenre] = useState('')
   const [Param, setParam] = useState('');
   const Params =  usePathname()
-  if (typeof window !== "undefined") {
-    const urlParams = new URLSearchParams(window.location.search);
-    setParam(urlParams || '')
-  }
+
   const getImage = async () =>{
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      setParam(urlParams || '')
+    }
     const page = Param.get('page') || '1';
     const genre = Param.get('genre') || '28'
     axios.defaults.baseURL = "https://api.themoviedb.org/3";
@@ -35,6 +36,7 @@ export default function Page() {
     setIsLoading(false); // Set isLoading to false
   }
 useEffect(() => {
+
   getImage();
         
 }, [])
