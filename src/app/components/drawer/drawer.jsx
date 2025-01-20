@@ -56,7 +56,7 @@ export default function DrawerDemo() {
           </label>
         </div>
 
-         <button className=" border-black bg-neutral-500 w-60 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Button</button>
+         <button className=" border-black bg-neutral-500 w-60 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Sign In</button>
          </form>
         </div>
       </div>
