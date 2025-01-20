@@ -8,6 +8,7 @@ const id = uuid()
 
 export default function Card({data, trending, index, type}) {
     const imageUrl = useSelector(state => state.RawWoods.imageUrl)
+    console.log('url',imageUrl + data?.poster_path)
     return (  
       <Link target='_blank' href={`/${type === 'tv' ? "tv" : data.media_type || 'movie'}/${data.id}`}>
     <div className="flex-shrink-0 hover:scale-105 mt-10 relative overflow-hidden min-w-[230px]">
