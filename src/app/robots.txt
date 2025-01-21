@@ -1,0 +1,9 @@
+# Allow all search engines
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /user/
+
+# Sitemap URL
+Sitemap: https://rawcinemas.vercel.app/sitemap.xml
