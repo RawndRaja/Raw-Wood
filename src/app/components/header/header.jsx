@@ -37,7 +37,7 @@ useEffect(() => {
         <Link href={'/'} className="flex-shrink-0">
           <img
             src={'/images/logo.png'}
-            className="py-2 mt-6 h-48 w-40 sm:h-[30vh] md:h-[30vh] lg:ml-[2vw] md:w-[30vw] lg:w-[18vw] lg:h-[30vh]"
+            className="py-2 mt-4 h-52 w-48 sm:h-[30vh] md:h-[30vh] lg:ml-[2vw] md:w-[30vw] lg:w-[18vw] lg:h-[30vh]"
             width={160}
             height={160}
             alt="logo"
@@ -66,7 +66,7 @@ useEffect(() => {
         <button onClick={search} className="hidden bg-white h-10 w-10 justify-center pl-2 rounded-md ml-[30vw] lg:mt-[-2vw]
         md:ml-[52vw] sm:ml-72 lg:ml-8 sm:block"><Menu /></button>
         </form>
-        <div className=' ml-32 sm:ml-0 lg:mt-1 '><Drawer /></div>
+        <div className='mt-2 ml-28 sm:ml-0 lg:mt-1 '><Drawer /></div>
       </div>
 
 

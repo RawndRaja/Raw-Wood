@@ -2,8 +2,6 @@
 
 import * as React from "react"
 
-import { Checkbox } from "@/components/ui/checkbox"
-
 
 import { Button } from "@/components/ui/button"
 import {
@@ -37,7 +35,7 @@ export default function DrawerDemo() {
     </div>
          <div className="flex items-center space-x-2">
           
-      <Checkbox className="bg-white -ml-24 lg:-ml-[6.6vw] " id="terms" />
+      <input type="checkbox" className="bg-white -ml-24 lg:-ml-[6.6vw] " />
       <label
         htmlFor="terms"
         className="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -47,7 +45,7 @@ export default function DrawerDemo() {
     </div>
     <div className="flex items-center space-x-2">
           
-          <Checkbox className="bg-white" id="terms" />
+          <input type="checkbox" className=""/>
           <label
             htmlFor="terms"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
