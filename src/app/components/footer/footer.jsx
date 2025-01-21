@@ -11,8 +11,9 @@ export default function Footer() {
       <div className='w-full absolute bottom-0 justify-between items-center h-full px-36 lg:flex'>
         <div className='relative'>
           <Link href={'/'} className='flex-shrink-0'>
-            <img className='w-80 h-28 px-2  mt-20 bg-neutral-700 rounded-lg' src={'/images/logo.png'} width={140} height={200} alt='logo' />
+            <img className='w-96 h-28 px-2  mt-32 bg-neutral-700 rounded-lg' src={'/images/logo.png'} width={140} height={200} alt='logo' />
           </Link>
+          <p className="mt-6 text-sm text-gray-500">&copy; 2025 RAW Cinemas. All rights reserved.</p>
         </div>
         <div className='py-1 w-full ml-40'>
         <div className="custom-shape-divider-top-1737387106 -z-10">

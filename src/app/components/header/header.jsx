@@ -25,6 +25,7 @@ useEffect(() => {
           <a href="/" className="Link font-bold hover:scale-125">Home</a>
           <a href="/movie?page=1" className="Link font-bold hover:scale-125">Movies</a>
           <a href="/tv?page=1" className="Link font-bold hover:scale-125">TV</a>
+          <a href="/about-us" className="Link font-bold hover:scale-125">About Us</a>
         </div>
     </>
   )
