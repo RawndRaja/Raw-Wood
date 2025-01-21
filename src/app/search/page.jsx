@@ -66,7 +66,7 @@ export default function SearchPage() {
       Search()
     }
   }, [searchQuery])
-  if (!searchQuery) return  <div> <div className='h-24'></div> <div className='justify-center relative'><h1 className='tex-4xl text-center text-white'>Search Any Movie</h1> <input className='absolute ml-[14vw] w-80 rounded-md h-12 mt-10 p-6 placeholder:px-2 placeholder:text-black text-xl lg:ml-[42vw] lg:w-80' onChange={(e) => setmovie(e.target.value)} placeholder='Search Any Movies Here' type='text' /></div> </div>
+  if (!searchQuery) return  <div> <div className='h-24'></div> <div className='justify-center relative'><h2 className='tex-4xl text-center text-white'>Search Any Movie</h2> <input className='absolute ml-[14vw] w-80 rounded-md h-12 mt-10 p-6 placeholder:px-2 placeholder:text-black text-xl lg:ml-[42vw] lg:w-80' onChange={(e) => setmovie(e.target.value)} placeholder='Search Any Movies Here' type='text' /></div> </div>
   if (loading) return <div className="text-center mt-10">Loading...</div>
   if (error) return <div className="text-center mt-10 text-red-500">{error}</div>
 

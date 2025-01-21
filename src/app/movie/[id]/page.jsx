@@ -81,7 +81,7 @@ export default function Page() {
       Watch Your Favaourate movies Now.⚡ <br />
       Top Movies 🎥 Avilable at Raw Cinemas.
         <div className='mt-6'>
-          <h1>Recommended for Indian Movies 🎥 and Hollywood Movies 🎥.</h1>
+          <h3>Recommended for Indian Movies 🎥 and Hollywood Movies 🎥.</h3>
           <a className='mt-2' 
             href={`https://www.watch-movies.com.pk/?s=${(data.title || data.name)}`} 
             target='_blank'>
@@ -92,7 +92,7 @@ export default function Page() {
         </div>
         
         <div className='mt-4'>
-          <h1>Recommended for Hollywood Movies.🎥</h1>
+          <h3>Recommended for Hollywood Movies.🎥</h3>
           <a className='mt-2' 
             href={`https://cineb.rs/search/${formatMovieTitle(data.title || data.name)}`} 
             target='_blank'>
@@ -153,7 +153,7 @@ export default function Page() {
                     (data.genres).map((data, index)=>{
                       return(
                         <div key={index}>
-                          <h1> {data.name} </h1>
+                          <h2> {data.name} </h2>
                         </div>
                       )
                     })
@@ -210,7 +210,7 @@ export default function Page() {
 
             </div>
 
-            <h1 className='text-xl '>Cast:</h1>
+            <h2 className='text-xl '>Cast:</h2>
             <div>
               <div className='grid grid-cols-[repeat(auto-fit,96px)] gap-5 my-4'>
                 
