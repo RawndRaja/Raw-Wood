@@ -11,7 +11,7 @@ export default function Footer() {
       <div className='w-full absolute bottom-0 justify-between items-center h-full px-36 lg:flex'>
         <div className='relative'>
           <Link href={'/'} className='flex-shrink-0'>
-            <img className='w-64 h-20 px-2 py-2 mt-6 bg-neutral-600 rounded-lg' src={'/images/logo.png'} width={140} height={140} alt='logo' />
+            <img className='w-80 h-28 px-2  mt-20 bg-neutral-700 rounded-lg' src={'/images/logo.png'} width={140} height={200} alt='logo' />
           </Link>
         </div>
         <div className='py-1 w-full ml-40'>

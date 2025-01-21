@@ -76,10 +76,10 @@ export default function Page() {
   return (
     
     <div>
-            <div popover='auto' className='rounded-lg w-full sm:w-96 bg-neutral-700 backdrop-blur-md h-96 text-white lg:w-[45vw] lg:h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' id="suggest">
+        <div popover='auto' className='rounded-lg w-full sm:w-96 bg-neutral-700 backdrop-blur-md h-96 text-white lg:w-[45vw] lg:h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' id="suggest">
       <div className='text-center lg:text-xl' >
       Watch Your Favaourate movies Now.⚡ <br />
-      Top Movies 🎥 Avilable at Raw Wood Cinemas.
+      Top Movies 🎥 Avilable at Raw Cinemas.
         <div className='mt-6'>
           <h1>Recommended for Indian Movies 🎥 and Hollywood Movies 🎥.</h1>
           <a className='mt-2' 
@@ -90,6 +90,7 @@ export default function Page() {
             </button>
           </a>
         </div>
+        
         <div className='mt-4'>
           <h1>Recommended for Hollywood Movies.🎥</h1>
           <a className='mt-2' 

@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Raw Wood",
+  title: "Raw Cinemas",
   description: "Your New Movies Hub",
 };
 

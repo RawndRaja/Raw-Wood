@@ -37,7 +37,7 @@ useEffect(() => {
         <Link href={'/'} className="flex-shrink-0">
           <img
             src={'/images/logo.png'}
-            className="py-2 mt-6 h-24 w-40 sm:h-[20vh] md:h-[18vh] lg:ml-[2vw] md:w-[30vw] lg:w-[15vw] lg:h-[15vh]"
+            className="py-2 mt-6 h-48 w-40 sm:h-[30vh] md:h-[30vh] lg:ml-[2vw] md:w-[30vw] lg:w-[18vw] lg:h-[30vh]"
             width={160}
             height={160}
             alt="logo"
