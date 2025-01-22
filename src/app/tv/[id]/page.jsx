@@ -15,8 +15,8 @@ export default function Page() {
   const Params = useParams();
   const [data, setData] = useState({}); // Initialize data as an empty object
   const [isLoading, setIsLoading] = useState(false); // Initialize isLoading as false
-  const [Cast, setCast] = useState({})
-  const [Crew, setCrew] = useState({})
+  const [Cast, setCast] = useState([])
+  const [Crew, setCrew] = useState([])
   const [Recommendation, setRecommendation] = useState([])
   const [similar, setSimilar] = useState([])
   const [showVideo, setShowVideo] = useState(false);

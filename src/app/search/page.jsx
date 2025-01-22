@@ -119,6 +119,7 @@ export default function SearchPage() {
         <input className='w-60 px-4 h-12 mt-2 rounded-md  placeholder:text-black lg:bg-transparent lg:border-none lg:outline-none lg:placeholder:text-white' type="text" placeholder='Search Any Movie Here' onChange={(e) => setmovie(e.target.value)} />
       </div>
       <div>
+      <h4 className='text-xl text-center mt-1 text-red-600'> <span className='text-blue-500'>Note !</span> If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
         <h1 className='text-5xl text-center mt-4'>Search Results</h1>
         {searchQuery && (
           <div>
@@ -139,7 +140,6 @@ export default function SearchPage() {
         )}
       </div>
       <div className='mt-4 w-full'>
-      <h4 className='text-xl text-center mt-1 text-red-600'> <span className='text-blue-500'>Note !</span> If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
       </div>
     </div>
   )
