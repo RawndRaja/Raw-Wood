@@ -125,7 +125,6 @@ export default function SearchPage() {
           <h2 className='text-2xl text-center mt-4'>
             Results for: {decodeURIComponent(searchQuery || "").trim()}
           </h2>
-          <h4 className='text-xl text-center mt-1 text-red-600'>If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
           </div>
 
         )}
@@ -138,6 +137,9 @@ export default function SearchPage() {
             {searchQuery ? "No results found" : "Enter a search query to get started"}
           </p>
         )}
+      </div>
+      <div className='mt-4 w-full'>
+      <h4 className='text-xl text-center mt-1 text-red-600'> <span className='text-blue-500'>Note !</span> If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
       </div>
     </div>
   )
