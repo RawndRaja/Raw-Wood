@@ -8,13 +8,14 @@ export default function Card({ data, media}) {
   // ${imageUrl}${data.poster_path}` || `${imageUrl}${data.profile_path}
 
   if (!data) return null;
+  
 
   return (
     <div className="relative group sm:justify-center items-center lg:px-0 cursor-pointer w-80 lg:w-full">
       <Link href={`/${media}/${data.id}`}>
         <div className="overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
           <Image
-            src={imageUrl+(`${data.poster_path}` ||`${data.profile_path}` ) } // Fallback image
+            src={imageUrl+(data.poster_path ||data.profile_path) } // Fallback image
             alt={data.title || "Movie poster"}
             width={300}
             height={450}
@@ -25,6 +26,11 @@ export default function Card({ data, media}) {
             <h3 className="text-white font-bold text-lg truncate">
               {data.title || data.name || "Unknown Title"}
             </h3>
+            {media === 'person' ? 
+              <p className="text-gray-300 text-sm">
+                {data.known_for_department}
+              </p> : 
+          <div>
             <p className="text-gray-300 text-sm">
               {data.release_date ? new Date(data.release_date).getFullYear() : "N/A"}
             </p>
@@ -32,7 +38,10 @@ export default function Card({ data, media}) {
               <span className="text-yellow-400">
                 ⭐ {data.vote_average ? data.vote_average.toFixed(1) : "N/A"}
               </span>
+            
             </div>
+          </div>
+}
           </div>
         </div>
       </Link>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import CardData from './midcard'
 import {useRouter} from 'next/navigation'
+import Loader from '@/app/components/Loader/loader'
 
 
 export default function SearchPage() {
@@ -12,7 +13,21 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [movie, setmovie] = useState('')
+  const [recommendation, setrecommendation] = useState([])
   const navigation = useRouter()
+
+  const recommendations = async () => {
+    try {
+      setLoading(true)
+      axios.defaults.baseURL = "https://api.themoviedb.org/3";
+      axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
+      const response = await axios.get(`trending/all/week?language=en-US&api_key=20e6314a95e5453b320ad3775fb810d6`)
+      setrecommendation(response.data.results)
+      setLoading(false)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const search = () => {
     if (movie !== '') {
   navigation.push(`/search?q=${movie}`)
@@ -21,6 +36,9 @@ export default function SearchPage() {
   useEffect(() => {
   search();
   }, [movie])
+  useEffect(() => {
+    recommendations()
+  }, [])
 
   async function Search() {
     try {
@@ -66,8 +84,31 @@ export default function SearchPage() {
       Search()
     }
   }, [searchQuery])
-  if (!searchQuery) return  <div> <div className='h-24'></div> <div className='justify-center relative'><h2 className='tex-4xl text-center text-white'>Search Any Movie</h2> <input className='absolute ml-[14vw] w-80 rounded-md h-12 mt-10 p-6 placeholder:px-2 placeholder:text-black text-xl lg:ml-[42vw] lg:w-80' onChange={(e) => setmovie(e.target.value)} placeholder='Search Any Movies Here' type='text' /></div> </div>
-  if (loading) return <div className="text-center mt-10">Loading...</div>
+  if (!searchQuery) return (
+     <div className='flex flex-col justify-center items-center'>
+       <div className='h-24'></div> 
+       <div className='justify-center'>
+        <h2 className='text-4xl text-center text-white'>Search Any Movie</h2> 
+        <input className='w-80 rounded-md h-12 mt-10 p-6 placeholder:px-2 placeholder:text-black text-xl lg:w-80' onChange={(e) => setmovie(e.target.value)} placeholder='Search' type='text' />
+        </div> 
+        <div className='w-full flex flex-col justify-start items-center mt-10'>
+          <h1 className='text-xl text-center'>Recommendations</h1>
+          <div>
+            <CardData data={recommendation} />
+          </div>
+        </div>
+        <div className='h-52'></div>
+        </div>
+        )
+    if (loading) {
+      return (
+        <div className='flex justify-center items-center h-screen'>
+          <div className="loader"><Loader />
+          <h1 className='text-center text-3xl py-4'>Loading...</h1>
+          </div>
+        </div>
+      )
+    }
   if (error) return <div className="text-center mt-10 text-red-500">{error}</div>
 
   return (

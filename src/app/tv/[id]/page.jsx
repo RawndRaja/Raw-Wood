@@ -14,7 +14,7 @@ export default function Page() {
   const imageUrl = useSelector(state => state.RawWoods.imageUrl); // Fallback image
   const Params = useParams();
   const [data, setData] = useState({}); // Initialize data as an empty object
-  const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
+  const [isLoading, setIsLoading] = useState(false); // Initialize isLoading as false
   const [Cast, setCast] = useState({})
   const [Crew, setCrew] = useState({})
   const [Recommendation, setRecommendation] = useState([])
@@ -24,6 +24,7 @@ export default function Page() {
 
   const getImage = async () => {
     try {
+      setIsLoading(true); // Set isLoading to true
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
       axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
       const response = await axios.get(`tv/${Params.id}?api_key=20e6314a95e5453b320ad3775fb810d6`);
@@ -57,14 +58,12 @@ export default function Page() {
 
   if (isLoading) {
     return (
-    <div>
-      <div className='h-24 relative mt-40'>
-      <div className='absolute left-1/2 -translate-x-1/2'><Loader />
+      <div className='flex justify-center items-center h-screen'>
+        <div className="loader"><Loader />
+        <h1 className='text-center text-3xl py-4'>Loading...</h1>
+        </div>
       </div>
-
-      </div>
-      </div>
-  )
+    )
   }
 
   return (

@@ -31,7 +31,7 @@ useEffect(() => {
   )
 
   return (
-    <div className='mt-[-1vw] fixed opacity-85 z-40 header-body-all-page-raw-wood'>
+    <div className='mt-[-1vw] fixed opacity-85 z-40 header-body-all-page-raw-wood overflow-hidden'>
       {/* Logo and Links Container */}
       <div className="flex flex-row items-center h-20 w-[100dvw] md:mt-[1vw] bg-neutral-500 ">
         {/* Logo */}
@@ -51,7 +51,7 @@ useEffect(() => {
        </div>
 
         {/* Search Bar */}
-        <form className='flex  flex-row lg:mt-6' onSubmit={(e) => (e.preventDefault())}>
+        <form className='flex  flex-row lg:mt-6 justify-end items-end' onSubmit={(e) => (e.preventDefault())}>
         <div className=" ml-6 lg:block lg:ml-[8vw] lg:mt-[-2vw] ">
           
           <input
@@ -60,14 +60,14 @@ useEffect(() => {
             type="text"
             value={movie}
             onChange={(e) => setmovie(e.target.value)}
-            placeholder="Enter the movie name"
+            placeholder="Search"
           />
         </div>
         {/* Sign IN Button */}
         <button onClick={search} className="mt-2 hidden bg-white h-10 w-10 justify-center pl-2 rounded-md ml-[30vw] lg:mt-[-2vw]
         md:ml-[52vw] sm:ml-72 lg:ml-8 sm:block"><Menu /></button>
         </form>
-        <div className='mt-2 ml-28 sm:ml-0 lg:mt-1 '><Drawer /></div>
+        <div className='mt-2 ml-[28vw] sm:ml-0 lg:mt-1 '><Drawer /></div>
       </div>
 
 

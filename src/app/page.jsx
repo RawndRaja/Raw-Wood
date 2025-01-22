@@ -31,35 +31,67 @@ export default function Home() {
     }
   }
   const getImage = async () =>{
-    const response = await axios.get('/configuration?api_key=20e6314a95e5453b320ad3775fb810d6')
-    dispatch(setimageUrl(response.data.images.secure_base_url+"original"))
-    setIsLoading(false); // Set isLoading to false
+try {
+  setIsLoading(true); // Set isLoading to true
+  const response = await axios.get('/configuration?api_key=20e6314a95e5453b320ad3775fb810d6')
+  dispatch(setimageUrl(response.data.images.secure_base_url+"original"))
+  setIsLoading(false); // Set isLoading to false
+} catch (error) {
+  console.log(error);
+  
+}
   }
   const nowPlaying = async () => {
-  const response = await axios.get('/movie/now_playing?api_key=20e6314a95e5453b320ad3775fb810d6')
-  setnowPlayingdata(response.data.results)
-  setIsLoading(false); // Set isLoading to false
+    try {
+      setIsLoading(true); // Set isLoading to true
+      const response = await axios.get('/movie/now_playing?api_key=20e6314a95e5453b320ad3775fb810d6')
+      setnowPlayingdata(response.data.results)
+      setIsLoading(false); // Set isLoading to false
+    } catch (error) {
+      console.log(error);
+      
+    }
   
   }
   const topRated = async() => {
-    const response = await axios.get('movie/top_rated?api_key=20e6314a95e5453b320ad3775fb810d6')
-    setTrending(response.data.results)
-    setIsLoading(false); // Set isLoading to false
+      try {
+        setIsLoading(true); // Set isLoading to true
+        const response = await axios.get('movie/top_rated?api_key=20e6314a95e5453b320ad3775fb810d6')
+        setTrending(response.data.results)
+        setIsLoading(false); // Set isLoading to false
+      } catch (error) {
+        console.log(error);
+      }
   }
   const upcomingMovies = async() => {
-    const response = await axios.get('movie/upcoming?api_key=20e6314a95e5453b320ad3775fb810d6')
-    setUpcoming(response.data.results)
-    setIsLoading(false); // Set isLoading to false
+    try {
+      setIsLoading(true); // Set isLoading to true
+      const response = await axios.get('movie/upcoming?api_key=20e6314a95e5453b320ad3775fb810d6')
+      setUpcoming(response.data.results)
+      setIsLoading(false); // Set isLoading to false
+    } catch (error) {
+      console.log(error);
+    }
   }
   const Tv = async() => {
-    const response = await axios.get('/trending/tv/week?api_key=20e6314a95e5453b320ad3775fb810d6')
-    setTv(response.data.results)
-    setIsLoading(false); // Set isLoading to false
+    try {
+      setIsLoading(true); // Set isLoading to true
+      const response = await axios.get('/trending/tv/week?api_key=20e6314a95e5453b320ad3775fb810d6')
+      setTv(response.data.results)
+      setIsLoading(false); // Set isLoading to false
+    } catch (error) {
+      console.log(error);
+    }
   }
   const onAirData = async() => {
-    const response = await axios.get('tv/on_the_air?api_key=20e6314a95e5453b320ad3775fb810d6')
-    setOnAir(response.data.results)
-    setIsLoading(false); // Set isLoading to false
+    try {
+      setIsLoading(true); // Set isLoading to true
+      const response = await axios.get('tv/on_the_air?api_key=20e6314a95e5453b320ad3775fb810d6')
+      setOnAir(response.data.results)
+      setIsLoading(false); // Set isLoading to false  
+    } catch (error) {
+      console.log(error);
+    }
     
   }
 useEffect(() => {
@@ -72,16 +104,14 @@ useEffect(() => {
   onAirData();
 
 },[])
-if (isLoading) {
-  return (
-  <div>
-    <div className='h-24 relative mt-40'>
-    <div className='absolute left-1/2 -translate-x-1/2'><Loader />
-    </div>
-
-    </div>
-    </div>
-)
+  if (isLoading) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <div className="loader"><Loader />
+        <h1 className='text-center text-3xl py-4'>Loading...</h1>
+        </div>
+      </div>
+    )
 }
   return (
 <>

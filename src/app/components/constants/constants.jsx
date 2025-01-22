@@ -1,9 +1,6 @@
-
-import React from 'react'
-import { FaHome } from "react-icons/fa";
+import { FaHome , FaSearch } from 'react-icons/fa';
 import { MdConnectedTv } from "react-icons/md";
 import { RiMovie2AiLine } from "react-icons/ri";
-import { FaSearch } from "react-icons/fa";
 
 export const Links = [
     {
@@ -57,30 +54,44 @@ export const genres = [
         id: 9648
     }
 ];
+
+export const whiteIconPaths = {
+    '/tv': true,
+    '/movie': true,
+    '/search': true,
+    '/genre': true
+};
+
 const Constants = [
     {
-        label: 'Home',
-        link: '/',
-        Icon: <FaHome />,
+      label: 'Home',
+      link: '/',
+      Icon: FaHome,  // Pass component reference, not JSX
+      basePath: '/'
     },
     {
-        label: "TV Shows",
-        link: "/tv?page=1",
-        Icon: <MdConnectedTv />,
-
+      label: "TV Shows",
+      link: "/tv?page=1",
+      Icon: MdConnectedTv,  // Pass component reference, not JSX
+      basePath: '/tv'
     },
     {
-        label: 'Movies',
-        link: '/movie?page=1',
-        Icon: <RiMovie2AiLine />,
-
-    },  
+      label: 'Movies',
+      link: '/movie?page=1',
+      Icon: RiMovie2AiLine,  // Pass component reference, not JSX
+      basePath: '/movie'
+    },
     {
-        label: "Search",
-        link: '/search',
-        Icon: <FaSearch />,
+      label: "Search",
+      link: '/search',
+      Icon: FaSearch,  // Pass component reference, not JSX
+      basePath: '/search'
+    },
+];
 
-    }
+export const shouldUseWhiteIcons = (pathname) => {
+    const basePath = '/' + pathname.split('/')[1];
+    return whiteIconPaths[basePath];
+};
 
-]
-export default Constants
+export default Constants;

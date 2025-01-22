@@ -9,11 +9,7 @@ export default function Scroll({ data, heading, type }) {
     const containerStyle = useRef()
     if (!data) {
         return (
-            <>
-            <div className='relative'>
-            <div className="loader absolute"></div>
-            </div>
-            </>
+          null
         )
     }
     const handleNext = () =>{

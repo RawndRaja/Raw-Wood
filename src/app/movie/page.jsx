@@ -36,17 +36,15 @@ useEffect(() => {
   getImage();
         
 }, [])
-  if (isLoading) {
-    return (
-    <div>
-      <div className='h-24 relative mt-40'>
-      <div className='absolute left-1/2 -translate-x-1/2'>
-      <Loader />
+if (isLoading) {
+  return (
+    <div className='flex justify-center items-center h-screen'>
+      <div className="loader"><Loader />
+      <h1 className='text-center text-3xl py-4'>Loading...</h1>
       </div>
-      </div>
-      </div>
+    </div>
   )
-  }
+}
 
   
   return (

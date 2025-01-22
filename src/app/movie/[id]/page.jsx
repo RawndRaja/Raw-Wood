@@ -61,17 +61,15 @@ export default function Page() {
     .trim();                       // Remove trailing spaces
 };
 
-  if (isLoading) {
-    return (
-    <div>
-      <div className='h-24 relative mt-40'>
-      <div className='absolute left-1/2 -translate-x-1/2'><Loader />
+if (isLoading) {
+  return (
+    <div className='flex justify-center items-center h-screen'>
+      <div className="loader"><Loader />
+      <h1 className='text-center text-3xl py-4'>Loading...</h1>
       </div>
-
-      </div>
-      </div>
+    </div>
   )
-  }
+}
 
   return (
     
@@ -212,18 +210,18 @@ export default function Page() {
 
             <h2 className='text-xl '>Cast:</h2>
             <div>
-              <div className='grid grid-cols-[repeat(auto-fit,96px)] gap-5 my-4'>
-                
+              
+              <div className='grid grid-cols-[repeat(auto-fit,96px)] gap-5 my-4'>  
                 {
                   Cast.map((data, index)=>{
                     return (
                       <div key={index}>
-
+                      <a href={`/person/${data.id}`}>
                       <div>
                         <img src={`${imageUrl}${data.profile_path}`} alt="Cast Actor" className='w-24 object-cover h-20 rounded-full' />
                       </div>
                       <p className='font-bold text-sm items-center'>{data?.name}</p>
-
+                      </a>
                       </div>
                     )
                   })
