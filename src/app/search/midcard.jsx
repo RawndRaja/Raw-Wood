@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../search/card';
 
-export default function CardDatas({ data, param  }) {
+export default function CardDatas({ data }) {
   // Check if data exists and is an array
   if (!data || !Array.isArray(data)) {
     console.error('Data is not valid:', data);

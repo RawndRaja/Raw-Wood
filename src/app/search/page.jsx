@@ -87,7 +87,7 @@ export default function SearchPage() {
       </div>
       <div className="mt-8">
         {data.length > 0 ? (
-          <CardData data={data} param={'/movie'} />
+          <CardData data={data} />
         ) : (
           <p className="text-center text-xl">
             {searchQuery ? "No results found" : "Enter a search query to get started"}
