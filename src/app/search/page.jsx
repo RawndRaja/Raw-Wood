@@ -125,7 +125,7 @@ export default function SearchPage() {
           <h2 className='text-2xl text-center mt-4'>
             Results for: {decodeURIComponent(searchQuery || "").trim()}
           </h2>
-          <h4 className='text-xl text-center mt-1'>If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
+          <h4 className='text-xl text-center mt-1 text-red-600'>If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
           </div>
 
         )}
