@@ -165,12 +165,12 @@ export default function Page() {
                   Cast.filter(el => el?.profile_path).map((data, index)=>{
                     return (
                       <div key={index}>
-
+                     <a href={`/person/${data.id}`}>
                       <div>
                         <img src={`${imageUrl}${data.profile_path}`} alt="Cast Actor" className='w-24 object-cover h-20 rounded-full' />
                       </div>
                       <p className='font-bold text-xl'>{data?.name}</p>
-
+                      </a>
                       </div>
                     )
                   })
