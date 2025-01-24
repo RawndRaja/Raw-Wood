@@ -75,8 +75,8 @@ export default function DrawerDemo() {
         <h1 className="text-center text-4xl mt-2 font-bold">Sign In</h1>
   
         <div>
-          <div className="flex flex-col justify-center items-center mt-2 px-6">
-           <form className="flex flex-col justify-center items-center mt-2 gap-3 border border-white px-6 py-8 rounded-lg" onSubmit={(e)=>{e.preventDefault()}}>
+          <div className="flex flex-col justify-center items-center mt-2 px-20">
+           <form className="flex flex-col justify-center items-center mt-2 gap-3 sm:border border-white px-0 sm:px-6 py-8 rounded-lg" onSubmit={(e)=>{e.preventDefault()}}>
             <label htmlFor="">Email</label>
            <input value={Data.email} onChange={(e)=>{ setData({ ...Data,email: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 text-xl rounded-md" placeholder="Email" type="email" />
            <label htmlFor="">Password</label>
