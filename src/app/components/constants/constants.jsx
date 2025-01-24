@@ -19,39 +19,39 @@ export const Links = [
 export const genres = [
     {
         label: 'Action',
-        id: 28
+        id: 28,
     },
     {
         label: 'Thriller',
-        id: 53
+        id: 53,
     },
     {
         label: 'Drama',
-        id: 18
+        id: 18,
     },
     {
         label: 'Comedy',
-        id: 35
+        id: 35,
     },
     {
         label: 'Horror',
-        id: 27
+        id: 27,
     },
     {
         label: 'Romance',
-        id: 10749
+        id: 10749,
     },
     {
         label: 'Sci-Fi',
-        id: 878
+        id: 878,
     },
     {
         label: 'Adventure',
-        id: 12
+        id: 12,
     },
     {
         label: 'Mystery',
-        id: 9648
+        id: 9648,
     }
 ];
 

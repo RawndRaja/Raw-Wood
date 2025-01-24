@@ -53,7 +53,7 @@ export default function Banner() {
               <div key={unique_id} className='min-w-full min-h-[450px] lg:min-h-full overflow-hidden relative transition-all' style={{ transform: `translateX(-${CurrentImage * 100}%)`, transition: 'transform 0.5s ease-in-out'}}>
 
                 <div className='w-full h-full'>
-                  <img loading='lazy' className='h-full w-full object-cover' key={index} src={imageUrl + nav.backdrop_path} alt="" />
+                  <img draggable={false} loading='lazy' className='h-full w-full object-cover' key={index} src={imageUrl + nav.backdrop_path} alt="" />
                 </div>
 
                 {/* button */}

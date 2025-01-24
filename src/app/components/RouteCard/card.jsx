@@ -14,6 +14,7 @@ export default function Card({ data, param }) {
       <Link href={`${param}/${data.id}`}>
         <div className="overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:scale-105">
           <Image
+            draggable={false}
             src={imageUrl+(`${data.poster_path}` ||`${data.profile_path}` ) } // Fallback image
             alt={data.title || "Movie poster"}
             width={300}

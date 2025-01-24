@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"user"
+        default:"guest"
+    },
+    status:{
+        type:String,
+        default:"unauthorized"
     },
     Created_at:{
         type:Date,
@@ -29,15 +33,11 @@ const userSchema = new mongoose.Schema({
     },
     intrest:{
         type:Array,
-        default:[ 'Action', 'Comedy', 'drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Thriller', 'Western' ],
+        default:['18'],
     },
     Updated_at:{
         type:Date,
         default:Date.now
-    },
-    remember:{
-        type:Boolean,
-        default:false
     },
     forgetPassword:{
         type:Date

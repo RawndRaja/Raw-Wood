@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-import Drawer from '@/app/components/drawer/drawer';
 import Menu from '@/app/components/search/search'
 import { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation'
+import DrawerDemo from '../drawer/drawer';
 
 
 export default function Header() {
@@ -67,7 +67,7 @@ useEffect(() => {
         <button onClick={search} className="mt-2 hidden bg-white h-10 w-10 justify-center pl-2 rounded-md ml-[30vw] lg:mt-[-2vw]
         md:ml-[52vw] sm:ml-72 lg:ml-8 sm:block"><Menu /></button>
         </form>
-        <div className='mt-2 ml-[28vw] sm:ml-0 lg:mt-1 '><Drawer /></div>
+        <div className='mt-2 ml-[28vw] sm:ml-2 lg:ml-2 lg:-mt-1 bg-neutral-100 rounded-lg h-10 w-10 flex justify-center'> <Link href={'/auth/login'}><DrawerDemo /></Link> </div>
       </div>
 
 

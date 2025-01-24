@@ -36,9 +36,8 @@ try {
     username: user.username,
     email: user.email
 }
-
 //create token
-const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "30d"})
+const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: remember ? "30d" : "1d"})
 
 const response = NextResponse.json({
     message: "Login successful",

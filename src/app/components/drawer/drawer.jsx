@@ -1,106 +1,12 @@
-"use client"
 
-import * as React from "react"
-import { useState } from "react"
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-
-
-import { Button } from "@/components/ui/button"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 
 export default function DrawerDemo() {
-  const [Data, setData] = useState({
-    email: "",
-    password: "",
-  })
-const action = async () => {
-    toast.success('sending data', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      });
-}
 
   return (
     <div>
-      <div className="z-50">
-            <ToastContainer 
-            position="top-right"
-            autoClose={5000}
-            limit={5}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            draggable
-            zIndex={9999}
-            theme="light"
-            transition={Bounce}
-            />
-      </div>
-
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button variant="outline" className="ml-[2vw] w-10 h-10 sm:ml-4   mt-[0] lg:ml-[1vw] lg:mt-[-2vw]"><svg width={24} height={24} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg></Button>
-      </DrawerTrigger>
-      <DrawerContent className="bg-neutral-900">
-      < DrawerTitle className="text-center text-4xl mt-2">Sign In</DrawerTitle>
-
-      <div>
-        <div className="flex flex-col justify-center items-center mt-2">
-         <form className="flex flex-col justify-center items-center mt-2 gap-3 border border-white px-6 py-8 rounded-lg" onSubmit={(e)=>{e.preventDefault()}}>
-          <label htmlFor="">Email</label>
-         <input value={Data.email} onChange={(e)=>{ setData({ ...Data,email: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 text-xl rounded-md" placeholder="Email" type="email" />
-         <label htmlFor="">Password</label>
-         <div>
-         <input value={Data.password} onChange={(e)=>{ setData({ ...Data ,password: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 text-xl rounded-md" placeholder="Password" type="password" />
-         </div>
-         <div>
-      <label htmlFor="">
-      <a className="w-32 text-sm text-blue-600 hover:text-xs transition-all " href="">Forget Password ?</a>
-      </label>
-    </div>
-         <div className="flex items-center space-x-2">
-          
-      <input type="checkbox" className="bg-white -ml-24 lg:-ml-[6.6vw] " />
-      <label
-        htmlFor="terms"
-        className="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        Remember me
-      </label>
-    </div>
-    <div className="flex items-center space-x-2">
-          
-          <input type="checkbox" className=""/>
-          <label
-            htmlFor="terms"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Accept terms and conditions
-          </label>
-        </div>
-
-         <button onClick={action} className=" border-black bg-neutral-500 w-60 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Sign In</button>
-         </form>
-        </div>
-      </div>
-      <div className="h-[1vh] lg:h-[5vh]"></div>
-
-
-      </DrawerContent>
-    </Drawer>
+ 
+        <button variant="outline" className="ml-[2vw] px-1 sm:px-0 w-10 h-10 sm:ml-4 mt-[0] lg:ml-[1vw]"><svg width={24} height={24} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg></button>
+  
     </div>
   )
 }
