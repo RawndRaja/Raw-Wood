@@ -66,7 +66,7 @@ export default function RootLayout({
   return (
        <html lang='en' suppressHydrationWarning>
         <head>
-
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5692786874442235" crossOrigin="anonymous"></script>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <link rel="canonical" href="https://rawcinemas.vercel.app/" />
         <meta name="google-adsense-account" content="ca-pub-5692786874442235" />
