@@ -72,7 +72,7 @@ export default function DrawerDemo() {
   
       <div>
         <div className="bg-neutral-900 flex flex-col justify-center items-center h-screen">
-        <h1 className="text-center text-4xl mt-2 font-bold">Sign In</h1>
+        <h1 className="text-center text-4xl mt-32 items-center font-bold">Sign In</h1>
   
         <div>
           <div className="flex flex-col justify-center items-center mt-2 px-20">
