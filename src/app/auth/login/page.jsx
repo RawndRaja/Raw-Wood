@@ -72,7 +72,7 @@ export default function DrawerDemo() {
   
       <div>
         <div className="bg-neutral-900 flex flex-col justify-center items-center h-screen">
-        <h1 className="text-center text-4xl mt-32 items-center font-bold">Sign In</h1>
+        <h1 className="text-center text-4xl mt-6 font-bold">Sign In</h1>
   
         <div>
           <div className="flex flex-col justify-center items-center mt-2 px-20">
@@ -100,7 +100,7 @@ export default function DrawerDemo() {
           ()=>{
             setData({ ...Data, remember: !Data.remember })
           }
-        } type="checkbox" className="bg-white -ml-24 lg:-ml-[6.1vw] " />
+        } type="checkbox" className="bg-white -ml-24 lg:-ml-[6.5vw] " />
         <label
           htmlFor="terms"
           className="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
