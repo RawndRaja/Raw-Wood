@@ -78,7 +78,7 @@ export default function Page() {
         data?.birthday &&
         <div>
           <Divider />
-          <h3>Birth Date: {data?.birthday}</h3>
+          <h3>Birth Date: {data?.birthday}</h3> 
         </div>
       }
       {
@@ -123,14 +123,17 @@ export default function Page() {
     <div className='flex flex-col  w-full justify-center items-center'>
       <div>
       <h2 className='text-5xl py-4 text-center justify-center'>Cast: </h2>
+      <Divider />
         <div>
           <div>
             <Routecard data={movie} param='movie' />
           </div>
         </div>
         </div>
+        <div><Divider /> </div>
         <div>
           <h2 className='text-5xl py-4 text-center justify-center'>Crew: </h2>
+          <Divider /> 
           <div>
           <Routecard data={moviecrew} param='movie' />
           </div>
