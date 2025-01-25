@@ -1,21 +1,23 @@
-import { connect } from "@/dbConnection/dbConnection";
+import { getDataFromToken } from "@/helper/getTokenData";
+
 import { NextRequest, NextResponse } from "next/server";
-import getToken from '@/helper/getTokenData'
 import User from "@/Modules/userModule";
-export async function GET(request: NextRequest){
+import { connect } from "@/dbConnection/dbConnection";
+
+connect();
+
+export async function GET(request:NextRequest){
+
     try {
         await connect();
-        const id = getToken(request);
-        const user = await User.findOne({_id: id}).select("-password");
-        if (!user) {
-          return NextResponse.json({error: "User  not found"}, {status: 404})
-        }
+        const userId = await getDataFromToken(request);
+        const user = await User.findOne({_id: userId}).select("-password");
         return NextResponse.json({
-          message: "User  found",
-          user
+            mesaaage: "User found",
+            data: user
         })
-      } catch (error: any) {
-        console.error(error);
-        return NextResponse.json({error: "Internal Server Error"}, {status: 500})
-      }
+    } catch (error:any) {
+        return NextResponse.json({error: error.message}, {status: 400});
+    }
+
 }
