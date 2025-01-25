@@ -2,13 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 export default async function GET(request: NextRequest){
     try {
-        
         const token = request.cookies.get("token")?.value || '';
-        console.log(token);
-        const tokenData:any = jwt.verify(token, process.env.TOKEN_SECRET!);
-        return tokenData.id;
-    } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 500})
-        
-    }
+        if (!token) {
+          return NextResponse.json({error: "Token not found"}, {status: 401})
+        }
+        const tokenData = jwt.verify(token, process.env.TOKEN_SECRET!);
+        if (!tokenData) {
+          return NextResponse.json({error: "Invalid token"}, {status: 401})
+        }
+        if (typeof tokenData === 'object' && 'id' in tokenData) {
+          return NextResponse.json({id: tokenData.id})
+        } else {
+          return NextResponse.json({error: "Invalid token data"}, {status: 401})
+        }
+      } catch (error: any) {
+        console.error(error);
+        return NextResponse.json({error: "Internal Server Error"}, {status: 500})
+      }
 }
