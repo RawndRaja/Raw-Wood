@@ -44,9 +44,10 @@ try {
   const userDetails = async () => {
     try {
       axios.defaults.baseURL = "";
-      axios.defaults.headers.common['Authorization'] = ``;
-      const data = axios.get('/api/Users/user')
-      console.log('data',data)
+      axios.defaults.headers.common = ``;
+      const response = await axios.get('/api/Users/user');
+      const data = await response.data;
+      console.log('data', data);
     } catch (error) {
       console.log(error)
     }
