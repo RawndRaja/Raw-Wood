@@ -1,23 +1,21 @@
-import { getDataFromToken } from "@/helper/getTokenData";
-
-import { NextRequest, NextResponse } from "next/server";
-import User from "@/Modules/userModule";
 import { connect } from "@/dbConnection/dbConnection";
-
-connect();
-
-export async function GET(request:NextRequest){
-
+import { NextRequest, NextResponse } from "next/server";
+import { getDataFromToken } from '@/helper/getTokenData'
+import User from "@/Modules/userModule";
+export async function GET(request: NextRequest){
     try {
         await connect();
-        const userId = await getDataFromToken(request);
-        const user = await User.findOne({_id: userId}).select("-password");
+        const id = getDataFromToken(request);
+        const user = await User.findOne({_id: id}).select("-password");
+        if (!user) {
+          return NextResponse.json({error: "User  not found"}, {status: 404})
+        }
         return NextResponse.json({
-            mesaaage: "User found",
-            data: user
+          message: "User  found",
+          user
         })
-    } catch (error:any) {
-        return NextResponse.json({error: error.message}, {status: 400});
-    }
-
+      } catch (error: any) {
+        console.error(error);
+        return NextResponse.json({error: "Internal Server Error"}, {status: 400})
+      }
 }
