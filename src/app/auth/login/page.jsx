@@ -3,14 +3,17 @@ import { useState } from "react"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 export default function DrawerDemo() {
   const [showPassword, setShowPassword] = useState(false);
   const [terms, setterms] = useState(false);
     const [Data, setData] = useState({
       email: "",
       password: "",
-      remember: false,
+      remember: false
     })
+    const router = useRouter()
   const action = async () => {
     if(!terms) {
       toast.error('Please accept terms and conditions', {
@@ -38,7 +41,7 @@ export default function DrawerDemo() {
           transition: Bounce,
           });
       } else {
-      toast.success('Logging in', { 
+      toast.warning('Logging in', { 
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -49,6 +52,19 @@ export default function DrawerDemo() {
         theme: "dark",
         transition: Bounce,
         });}
+        await axios.post("/api/Users/login", Data)
+        toast.success('Successfully logged in', { 
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+          });
+          router.push('/')
       }
   }
   
@@ -76,7 +92,11 @@ export default function DrawerDemo() {
   
         <div>
           <div className="flex flex-col justify-center items-center mt-2 px-20">
-           <form className="flex flex-col justify-center items-center mt-2 gap-3 sm:border border-white px-0 sm:px-6 py-8 rounded-lg" onSubmit={(e)=>{e.preventDefault()}}>
+           <form onSubmit={
+            (e)=>{
+              e.preventDefault();
+            }
+           } className="flex flex-col justify-center items-center mt-2 gap-3 sm:border border-white px-0 sm:px-6 py-8 rounded-lg">
             <label htmlFor="">Email</label>
            <input value={Data.email} onChange={(e)=>{ setData({ ...Data,email: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 text-xl rounded-md" placeholder="Email" type="email" />
            <label htmlFor="">Password</label>
@@ -123,7 +143,7 @@ export default function DrawerDemo() {
             </label>
           </div>
   
-           <button onClick={action} className=" border-black bg-neutral-500 w-60 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Sign In</button>
+           <button onClick={action} className=" border-black bg-neutral-500 w-64 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Sign In</button>
            </form>
           </div>
         </div>

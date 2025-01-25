@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 export default async function GET(request: NextRequest){
     try {
+        console.log('catching token');
+        
         const token = request.cookies.get("token")?.value || '';
+        console.log(token);
         const tokenData:any = jwt.verify(token, process.env.TOKEN_SECRET!);
         return tokenData.id;
     } catch (error: any) {

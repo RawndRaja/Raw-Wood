@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true,'Password is required'],
     },
+    favourate:{
+        type: Array,
+    },
     role:{
         type:String,
         default:"guest"

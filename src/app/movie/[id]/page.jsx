@@ -8,6 +8,7 @@ import Divider from '@/app/components/Divider/divider'
 import Scroll from '@/app/components/ScrollBar/scroll'
 import VideoPlay from '@/app/components/Video/video'
 import Loader from '@/app/components/Loader/loader'
+import { FaRegHeart } from "react-icons/fa";  
 
 export default function Page() {
   const imageUrl = useSelector(state => state.RawWoods.imageUrl); // Fallback image
@@ -19,7 +20,7 @@ export default function Page() {
   const [Recommendation, setRecommendation] = useState([])
   const [similar, setSimilar] = useState([])
   const [showVideo, setShowVideo] = useState(false);
-
+  const [scale, setscale] = useState(false)
   const getImage = async () => {
     try {
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
@@ -28,10 +29,8 @@ export default function Page() {
       const Crew = await axios.get(`movie/${Params.id}/credits?api_key=20e6314a95e5453b320ad3775fb810d6`);
       const recommendation = await axios.get(`movie/${Params.id}/recommendations?api_key=20e6314a95e5453b320ad3775fb810d6`)
       const similar = await axios.get(`movie/${Params.id}/similar?api_key=20e6314a95e5453b320ad3775fb810d6`)
-      
 
-      setRecommendation(recommendation.data.results)
-
+  
       setSimilar(similar.data.results)
 
       setCast(Crew.data.cast)
@@ -39,7 +38,8 @@ export default function Page() {
       setCrew(Crew.data.crew)
 
       setData(response.data); // Update the data state
-
+      setRecommendation(recommendation.data.results)
+      
       setIsLoading(false); // Set isLoading to false
     } catch (error) {
       console.log(error);
@@ -53,6 +53,26 @@ export default function Page() {
   useEffect(() => {
     getImage();
   }, [Params.id]); // Add Params.id as a dependency to re-run the effect when the id changes
+  
+const FavAction = async () =>{
+  try {
+    if (data && data.id) {
+      const FavData = {
+        id: data.id,
+        genre: data.genres || [],
+        title: data.title || '',
+        action: scale ? 'remove' : 'add'
+      };
+      axios.defaults.baseURL = "";
+      await axios.post("/api/Users/favourate", FavData)
+
+    }
+  } catch (error) {
+    console.log(error+ 'data')
+  }
+}
+
+
   const formatMovieTitle = (title) => {
   return title
     ?.toLowerCase()
@@ -123,7 +143,13 @@ if (isLoading) {
          
         <div>
         <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Watch Trailer</button>
-          <button popoverTarget='suggest' className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-yellow-400 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
+            <button onClick={
+              ()=>{
+                setscale(!scale)
+                FavAction();
+              }
+            } className='mt-3 w-full py-2 px-4 text-center bg-blue-200 text-black rounded font-bold text-lg  transition-all flex flex-row gap-10 items-center justify-center'><p>{scale? "Added TO Favourate" :"Add TO Favourate"}</p><div><FaRegHeart className={scale ? 'scale-150 transition-all text-red-600': null}/></div></button>
+            <button popoverTarget='suggest' className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-yellow-400 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
           <a href={`https://hdhub4u.spa/?s=${data.title || data.name}`} target='_blank' ><button className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-green-500 to-green-700 hover:scale-105 transition-all'>Download Now</button></a>
         </div>
 
