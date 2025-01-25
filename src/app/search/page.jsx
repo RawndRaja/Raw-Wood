@@ -4,20 +4,25 @@ import axios from 'axios'
 import CardData from './midcard'
 import {useRouter} from 'next/navigation'
 import Loader from '@/app/components/Loader/loader'
+import NextCard from "./next.jsx"
 
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [NewSearchQuery, setNewSearchQuery] = useState('')
   const [data, setData] = useState([])
+  const [pages, setpages] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [movie, setmovie] = useState('')
+  const [moviepages, setmoviepages] = useState('')
   const [recommendation, setrecommendation] = useState([])
   const navigation = useRouter()
 
+
   const recommendations = async () => {
     try {
+
       setLoading(true)
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
       axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
@@ -44,10 +49,11 @@ export default function SearchPage() {
     try {
       setLoading(true)
       setError(null)
-      
       axios.defaults.baseURL = "https://api.themoviedb.org/3"
-      const response = await axios.get(`/search/multi?query=${searchQuery}&api_key=20e6314a95e5453b320ad3775fb810d6`)
+      const response = await axios.get(`/search/multi?query=${searchQuery}&page=${moviepages}&api_key=20e6314a95e5453b320ad3775fb810d6`)
       // Validate the response structure
+      setpages(response.data)
+      
       const results = Array.isArray(response.data.results) ? response.data.results : []
       setData(results)
     } catch (err) {
@@ -60,9 +66,9 @@ export default function SearchPage() {
   useEffect(() => {
   
     const intervalId = setInterval(() => {
-        const newQueryParam = window.location.search.includes("=")
-          ? window.location.search.split("=")[1]
-          : "";
+        const newQueryParam = new URLSearchParams(window.location.search).get("q") || "";
+        const pages = new URLSearchParams(window.location.search).get("page") || '1';
+        setmoviepages(pages || '1')
       setNewSearchQuery(newQueryParam);
     }, 2000);
   
@@ -73,9 +79,9 @@ export default function SearchPage() {
 
 
   useEffect(() => {
-    const queryParam = window.location.search.includes("=")
-      ? window.location.search.split("=")[1]
-      : ""
+    const queryParam = new URLSearchParams(window.location.search).get("q") || "";
+    const page = new URLSearchParams(window.location.search).get("page") || '1';
+    setmoviepages(page || '1')
     setSearchQuery(queryParam || "")
   }, [NewSearchQuery])
 
@@ -98,6 +104,7 @@ export default function SearchPage() {
           </div>
         </div>
         <div className='h-52'></div>
+
         </div>
         )
     if (loading) {
@@ -116,7 +123,7 @@ export default function SearchPage() {
       <div className='h-24'></div>
       <div className='ml-20'>
         {/* <h1 className='text-3xl text-center -ml-20'>Search movie</h1> */}
-        <input className='w-60 px-4 h-12 mt-2 rounded-md  placeholder:text-black lg:bg-transparent lg:border-none lg:outline-none lg:placeholder:text-white' type="text" placeholder='Search Any Movie Here' onChange={(e) => setmovie(e.target.value)} />
+        <input className='w-60 px-4 h-12 mt-2 rounded-md  placeholder:text-black lg:bg-transparent lg:border-none lg:outline-none text-black lg:placeholder:text-white' type="text" placeholder='Search Any Movie Here' onChange={(e) => setmovie(e.target.value)} />
       </div>
       <div>
       <h4 className='text-xl text-center mt-1 text-red-600'> <span className='text-blue-500'>Note !</span> If you don't find any movies, try searching with orignal name avilable across the internet.</h4>
@@ -124,8 +131,9 @@ export default function SearchPage() {
         {searchQuery && (
           <div>
           <h2 className='text-2xl text-center mt-4'>
-            Results for: {decodeURIComponent(searchQuery || "").trim()}
+          {pages.total_results}  Results for: {decodeURIComponent(searchQuery || "").trim()}
           </h2>
+
           </div>
 
         )}
@@ -139,8 +147,8 @@ export default function SearchPage() {
           </p>
         )}
       </div>
-      <div className='mt-4 w-full'>
-      </div>
+      <div className='mt-4 w-full'></div>
+      <div> <NextCard page={pages.page} totalPage={pages.total_pages} query={searchQuery} />  </div>
     </div>
   )
 }

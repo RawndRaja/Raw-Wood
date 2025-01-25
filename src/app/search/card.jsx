@@ -33,7 +33,7 @@ export default function Card({ data, media}) {
               </p> : 
           <div>
             <p className="text-gray-300 text-sm">
-              {data.release_date ? new Date(data.release_date).getFullYear() : "N/A"}
+              {data.release_date ? new Date(data.release_date || data.first_air_date).getFullYear() : "N/A"}
             </p>
             <div className="flex items-center gap-2">
               <span className="text-yellow-400">

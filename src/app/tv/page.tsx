@@ -56,7 +56,7 @@ if (isLoading) {
   param={Params} 
 />
 <div className='h-20'>
-  <NextCard page={Page} totalPage={TotalPage} genre={'10749'} />
+  <NextCard page={Page} totalPage={TotalPage} genre={'28'} type={'tv'} />
 </div>
         </div>
       </div>
