@@ -1,159 +1,144 @@
 'use client'
 import { useState } from "react"
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-export default function DrawerDemo() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [terms, setterms] = useState(false);
-    const [Data, setData] = useState({
-      email: "",
-      password: "",
-      remember: false
-    })
-    const router = useRouter()
-  const action = async () => {
-    if(!terms) {
-      toast.error('Please accept terms and conditions', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-        });
-      } else {
-      if( Data.email === "" || Data.password === "" ){
-        toast.error('Please fill all fields', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-          });
-      } else {
-      toast.warning('Logging in', { 
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-        });}
-        axios.defaults.baseURL = '';
-        await axios.post("/api/Users/login", Data)
-        toast.success('Successfully logged in', { 
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-          });
-          router.push('/')
-      }
+import { Bounce, ToastContainer, toast } from 'react-toastify'
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+
+const toastConfig = {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: false,
+  pauseOnHover: false,
+  draggable: true,
+  progress: undefined,
+  theme: "dark",
+  transition: Bounce,
+}
+
+export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false)
+  const [terms, setTerms] = useState(false)
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    remember: false
+  })
+  const router = useRouter()
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    
+    if (!terms) {
+      toast.error('Please accept terms and conditions', toastConfig)
+      return
+    }
+
+    if (!formData.email || !formData.password) {
+      toast.error('Please fill all fields', toastConfig)
+      return
+    }
+
+    try {
+      toast.warning('Logging in', toastConfig)
+      
+      await axios.post("/api/Users/login", formData)
+      
+      toast.success('Successfully logged in', toastConfig)
+      router.push('/')
+    } catch (error) {
+      toast.error('Error logging in', toastConfig)
+      console.error('Login error:', error)
+    }
   }
-  
-    return (
-      <div>
-        <div className="z-50">
-              <ToastContainer 
-              position="top-right"
-              autoClose={5000}
-              limit={5}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={false}
-              rtl={false}
-              draggable
-              zIndex={9999}
-              theme="dark"
-              transition={Bounce}
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  return (
+    <div className="min-h-screen bg-neutral-900">
+      <ToastContainer {...toastConfig} limit={5} zIndex={9999} />
+
+      <div className="flex flex-col items-center justify-center h-full pt-16 mt-14">
+        <h1 className="text-4xl font-bold mb-8">Sign In</h1>
+
+        <form onSubmit={handleLogin} className="w-full flex flex-col h-full max-w-md p-8 space-y-6 sm:border border-white rounded-lg">
+          <div className="space-y-2">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full p-3 bg-transparent border border-white rounded-md outline-none"
+              placeholder="Email"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="password">Password</label>
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-transparent border border-white rounded-md outline-none pr-10"
+                placeholder="Password"
               />
-        </div>
-  
-      <div>
-        <div className="bg-neutral-900 flex flex-col justify-center items-center h-screen">
-        <h1 className="text-center text-4xl mt-16 font-bold">Sign In</h1>
-  
-        <div>
-          <div className="flex flex-col justify-center items-center mt-2 px-20">
-           <form onSubmit={
-            (e)=>{
-              e.preventDefault();
-            }
-           } className="flex flex-col justify-center items-center mt-2 gap-3 sm:border border-white px-0 sm:px-6 py-8 rounded-lg">
-            <label htmlFor="">Email</label>
-           <input value={Data.email} onChange={(e)=>{ setData({ ...Data,email: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 text-xl rounded-md" placeholder="Email" type="email" />
-           <label htmlFor="">Password</label>
-           <div className="flex flex-row items-center w-auto ml-4">
-           <input value={Data.password} onChange={(e)=>{ setData({ ...Data ,password: e.target.value })}} className="outline-none border border-white bg-transparent h-10 w-80 px-3 pr-10 text-xl rounded-md" placeholder="Password" type={showPassword? "text" : "password"} />
-           <button onClick={
-            ()=>{
-              setShowPassword(!showPassword)
-            }
-           } className="relative -left-8"> {showPassword ? <FaEyeSlash /> : <FaEye />} </button>
-           </div>
-           <div>
-        <label htmlFor="">
-        <a className="w-32 text-sm text-blue-600 hover:text-xs transition-all " href="">Forget Password ?</a>
-        </label>
-      </div>
-          
-           <div className="flex items-center space-x-2">
-            
-        <input onClick={
-          ()=>{
-            setData({ ...Data, remember: !Data.remember })
-          }
-        } type="checkbox" className="bg-white -ml-24 lg:-ml-[6.5vw] " />
-        <label
-          htmlFor="terms"
-          className="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          Remember me
-        </label>
-      </div>
-      <div className="flex items-center space-x-2">
-            
-            <input onChange={
-              ()=>{
-                setterms(!terms)
-              }
-            } type="checkbox" className=""/>
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Accept terms and conditions
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </div>
+
+          <a href="#" className="text-sm text-blue-600 hover:text-xs transition-all mt-20">
+            Forget Password?
+          </a>
+
+          <div className="space-y-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="remember"
+                checked={formData.remember}
+                onChange={handleInputChange}
+                className="bg-white"
+              />
+              <span className="text-sm">Remember me</span>
+            </label>
+
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={terms}
+                onChange={(e) => setTerms(e.target.checked)}
+                className="bg-white"
+              />
+              <span className="text-sm">Accept terms and conditions</span>
             </label>
           </div>
-  
-           <button onClick={action} className=" border-black bg-neutral-500 w-64 rounded-md py-2 mt-2 text-white font-semibold hover:bg-neutral-800 hover:scale-105 transition-all" >Sign In</button>
-           </form>
-          </div>
-        </div>
-        <div className="h-[1vh] lg:h-[5vh]"></div>
-  
-  
-        </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 bg-neutral-500 text-white font-semibold rounded-md hover:bg-neutral-800 hover:scale-105 transition-all"
+          >
+            Sign In
+          </button>
+        </form>
       </div>
-      </div>
-    )
-  }
-  
+    </div>
+  )
+}
