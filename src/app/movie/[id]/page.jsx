@@ -21,6 +21,7 @@ export default function Page() {
   const [similar, setSimilar] = useState([])
   const [showVideo, setShowVideo] = useState(false);
   const [scale, setscale] = useState(false)
+  const [email, setemail] = useState('')
   const getImage = async () => {
     try {
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
@@ -50,7 +51,7 @@ export default function Page() {
       axios.defaults.baseURL = "";
       axios.defaults.headers.common = '';
       const response = axios.get('/api/Users/user')
-      console.log(response)
+      console.log('user',response)
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
       axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
     } catch (error) {

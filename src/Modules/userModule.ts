@@ -25,8 +25,8 @@ const userSchema = new mongoose.Schema({
             name: String,
             genre:[
                 {
-                    id: String,
-                    name: String
+                    id: [],
+                    name: []
                 }
             ]
         }
