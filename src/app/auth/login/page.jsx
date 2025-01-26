@@ -52,6 +52,7 @@ export default function DrawerDemo() {
         theme: "dark",
         transition: Bounce,
         });}
+        axios.defaults.baseURL = '';
         await axios.post("/api/Users/login", Data)
         toast.success('Successfully logged in', { 
           position: "top-right",
