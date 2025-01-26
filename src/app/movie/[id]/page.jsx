@@ -51,12 +51,13 @@ export default function Page() {
       axios.defaults.headers.common = '';
       const response = axios.get('/api/Users/user')
       console.log(response)
+      axios.defaults.baseURL = "https://api.themoviedb.org/3";
+      axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
     } catch (error) {
       console.log(error)
 
     }
   }
-  userDetails();
   const handlePlayVideo = ()=>{
     setShowVideo(true)
 
@@ -64,6 +65,7 @@ export default function Page() {
 
   useEffect(() => {
     getImage();
+    userDetails()
   }, [Params.id]); // Add Params.id as a dependency to re-run the effect when the id changes
   
 const FavAction = async () =>{
