@@ -21,16 +21,20 @@ const userSchema = new mongoose.Schema({
     },
     favourate:[
         {
-            id: String,
-            name: String,
-            genre:[
-                {
-                    id: [],
-                    name: []
-                }
-            ]
-        }
-    ],
+            id: {
+                type: String,
+                required: true
+              },
+              title: {
+                type: String,
+                required: true
+              },
+              genre: [{
+                id: Number,
+                name: String
+              }]
+            
+    }],
     role:{
         type:String,
         default:"guest"
@@ -45,8 +49,12 @@ const userSchema = new mongoose.Schema({
     },
     intrest:[
         {
-            id: String,
-            name: String
+            genre:[
+                {
+                    id: String,
+                    name: String
+                }
+            ]
         }
     ],
     Updated_at:{

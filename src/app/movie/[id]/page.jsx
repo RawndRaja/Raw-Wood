@@ -48,12 +48,12 @@ export default function Page() {
   };
   const userDetails = async ()=>{
     try {
-      axios.defaults.baseURL = "";
-      axios.defaults.headers.common = '';
-      const response = axios.get('/api/Users/user')
-      console.log('user',response.data.user)
-      axios.defaults.baseURL = "https://api.themoviedb.org/3";
-      axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGU2MzE0YTk1ZTU0NTNiMzIwYWQzNzc1ZmI4MTBkNiIsIm5iZiI6MTczNjk0MzAxOS44MjA5OTk5LCJzdWIiOiI2Nzg3YTVhYmYzOGI1ZDMzMzhiYjBiODkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0`;
+      const response = await axios.get('/api/Users/user', {
+        baseURL: "",
+      })
+      console.log('user',response)
+      setemail(response.data.user.email)
+
     } catch (error) {
       console.log(error)
 
@@ -73,10 +73,11 @@ const FavAction = async () =>{
   try {
     if (data && data.id) {
       const FavData = {
-        id: data.id,
+        id: Params.id,
         genre: data.genres || [],
         title: data.title || '',
-        action: scale ? 'remove' : 'add'
+        action: scale ? 'remove' : 'add',
+        email: await email
       };
       axios.defaults.baseURL = "";
       await axios.post("/api/Users/favourate", FavData)

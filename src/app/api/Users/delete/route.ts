@@ -25,6 +25,9 @@ export async function POST( request: NextRequest ){
         }
         // declaring the user to be deleted
         user.status = 'deleted';
+        user.Updated_at = Date.now();
+        user.username = user.username+" deleted";
+        user.email = user.email+" deleted";
         //saving the acc deleted time
         user.Updated_at = Date.now();
         // saving the user to the database

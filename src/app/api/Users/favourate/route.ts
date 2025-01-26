@@ -13,18 +13,26 @@ export async function POST(request: NextRequest){
         if (!user) {
             return NextResponse.json({error: "User not found"}, {status: 404})
         }
-        if (user.favourate.map((item: any) => item.id).includes(id)){
-            return NextResponse.json({error: "User already favourited"}, {status: 400})
-        }
         if(action === 'add'){
-        await user.favourate.push({name: title, id: id, genre: {id: genre.id, name: genre.name}})
+            if (user.favourate.some((item: any) => item.id === id)) {
+                return NextResponse.json({ error: "Already in favorites" }, { status: 400 });
+              }
         
+        await user.favourate.push({name: title, id: id, genre: {id: genre.id, name: genre.name}})
+        await user.intrest.push({ genre: {id: genre.id, name: genre.name}})
         await user.save()
         return NextResponse.json({message: "Favourited successfully"}, {status: 200})
         }
         if (action === 'remove'){
-            await user.favourate.filter((item:any) => item.id !== id)
-            await user.save()
+            
+            await User.findOneAndUpdate(
+                { email: email },
+                {
+                  $pull: {
+                    favourate: { id: id }
+                  }
+                }
+              );
         }        
 
     } catch (error: any) {

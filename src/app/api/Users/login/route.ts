@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Check user role
-        if (user.role === 'guest') {
+        if (user.role === 'guest' || user.status === 'deleted') {
             return NextResponse.json({ error: "User is not authorized", success: false }, { status: 403 });
         }
 

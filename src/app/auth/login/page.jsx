@@ -41,9 +41,11 @@ export default function LoginPage() {
     }
 
     try {
-      toast.warning('Logging in', toastConfig)
-      
-      await axios.post("/api/Users/login", formData)
+      toast.warning('Logging in', toastConfig )
+
+      await axios.post("/api/Users/login", formData,{
+        baseURL: "",
+      })
       
       toast.success('Successfully logged in', toastConfig)
       router.push('/')
