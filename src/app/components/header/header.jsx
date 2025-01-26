@@ -5,10 +5,19 @@ import Menu from '@/app/components/search/search'
 import { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation'
 import DrawerDemo from '../drawer/drawer';
+import axios from 'axios';
 
 
 export default function Header() {
   const [movie, setmovie] = useState('')
+  const userDetails = async () =>{
+    try {
+      const response = axios.get('/api/Users/user')
+      console.log('response', response);
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const navigation = useRouter()
   const search = () => {
     if (movie !== '') {
@@ -17,6 +26,7 @@ export default function Header() {
   }
 useEffect(() => {
   search();
+  userDetails();
   }, [movie])
   const links = (
 

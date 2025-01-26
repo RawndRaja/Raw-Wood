@@ -41,17 +41,7 @@ try {
   
 }
   }
-  const userDetails = async () => {
-    try {
-      axios.defaults.baseURL = "";
-      axios.defaults.headers.common = ``;
-      const response = await axios.get('/api/Users/user');
-      const data = await response.data;
-      console.log('data', data);
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
   const nowPlaying = async () => {
     try {
       setIsLoading(true); // Set isLoading to true
@@ -113,7 +103,6 @@ useEffect(() => {
   upcomingMovies();
   Tv();
   onAirData();
-  userDetails();
 
 },[])
   if (isLoading) {
