@@ -19,9 +19,18 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true,'Password is required'],
     },
-    favourate:{
-        type: Array,
-    },
+    favourate:[
+        {
+            id: String,
+            name: String,
+            genre:[
+                {
+                    id: String,
+                    name: String
+                }
+            ]
+        }
+    ],
     role:{
         type:String,
         default:"guest"
@@ -34,10 +43,12 @@ const userSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    intrest:{
-        type:Array,
-        default:['18'],
-    },
+    intrest:[
+        {
+            id: String,
+            name: String
+        }
+    ],
     Updated_at:{
         type:Date,
         default:Date.now

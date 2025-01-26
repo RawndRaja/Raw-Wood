@@ -45,6 +45,18 @@ export default function Page() {
       console.log(error);
     }
   };
+  const userDetails = async ()=>{
+    try {
+      axios.defaults.baseURL = "";
+      axios.defaults.headers.common = '';
+      const response = axios.get('/api/Users/user')
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+
+    }
+  }
+  userDetails();
   const handlePlayVideo = ()=>{
     setShowVideo(true)
 
