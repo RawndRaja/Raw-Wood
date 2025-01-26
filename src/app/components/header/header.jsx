@@ -10,13 +10,6 @@ import axios from 'axios';
 
 export default function Header() {
   const [movie, setmovie] = useState('')
-  const userDetails = async () =>{
-    try {
-      const response = axios.get('/api/Users/user')
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const navigation = useRouter()
   const search = () => {
     if (movie !== '') {
@@ -25,7 +18,6 @@ export default function Header() {
   }
 useEffect(() => {
   search();
-  userDetails();
   }, [movie])
   const links = (
 
