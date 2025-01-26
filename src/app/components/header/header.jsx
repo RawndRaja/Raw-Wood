@@ -13,7 +13,6 @@ export default function Header() {
   const userDetails = async () =>{
     try {
       const response = axios.get('/api/Users/user')
-      console.log('response', response);
     } catch (error) {
       console.log(error)
     }
