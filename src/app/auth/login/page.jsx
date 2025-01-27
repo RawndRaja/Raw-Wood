@@ -4,6 +4,7 @@ import { Bounce, ToastContainer, toast } from 'react-toastify'
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const toastConfig = {
   position: "top-right",
@@ -65,10 +66,11 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-neutral-900">
+      <title>Sign In Page</title>
       <ToastContainer {...toastConfig} limit={5} zIndex={9999} />
 
-      <div className="flex flex-col items-center justify-center h-full pt-16 mt-14">
-        <h1 className="text-4xl font-bold mb-8">Sign In</h1>
+      <div className="flex flex-col items-center justify-center h-full pt-16 mt-10">
+        <h1 className="text-4xl font-bold mb-2">Sign In</h1>
 
         <form onSubmit={handleLogin} className="w-full flex flex-col h-full max-w-md p-8 space-y-6 sm:border border-white rounded-lg">
           <div className="space-y-2">
@@ -139,6 +141,8 @@ export default function LoginPage() {
           >
             Sign In
           </button>
+         <div className="flex flex-row gap-2 flex-grow"> <p>Don't have account?</p>
+         <Link className="text-blue-600" href={'/auth/register'}>Create an account</Link></div>
         </form>
       </div>
     </div>

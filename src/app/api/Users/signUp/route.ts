@@ -8,6 +8,8 @@ export async function POST(request: NextRequest){
     try {
         await connect();
         const reqbody = await request.json();
+        console.log(reqbody);
+        
         const {username, FullName, email, password} = reqbody;
     
         //check if user exists
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest){
         });
     
         const savedUser  = await newUser.save();
-        await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
+        // await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
     
         return NextResponse.json({message: "User created successfully", savedUser}, {status: 201})
         

@@ -20,8 +20,7 @@ export default function Page() {
   const [Recommendation, setRecommendation] = useState([])
   const [similar, setSimilar] = useState([])
   const [showVideo, setShowVideo] = useState(false);
-  const [scale, setscale] = useState(false)
-  const [email, setemail] = useState('')
+  // const [scale, setscale] = useState(false)
   const getImage = async () => {
     try {
       axios.defaults.baseURL = "https://api.themoviedb.org/3";
@@ -46,19 +45,19 @@ export default function Page() {
       console.log(error);
     }
   };
-  const userDetails = async ()=>{
-    try {
-      const response = await axios.get('/api/Users/user', {
-        baseURL: "",
-      })
-      console.log('user',response)
-      setemail(response.data.user.email)
+  // const userDetails = async ()=>{
+  //   try {
+  //     const response = await axios.get('/api/Users/user', {
+  //       baseURL: "",
+  //     })
+  //     console.log('user',response)
+  //     setemail(response.data.user.email)
 
-    } catch (error) {
-      console.log(error)
+  //   } catch (error) {
+  //     console.log(error)
 
-    }
-  }
+  //   }
+  // }
   const handlePlayVideo = ()=>{
     setShowVideo(true)
 
@@ -66,27 +65,27 @@ export default function Page() {
 
   useEffect(() => {
     getImage();
-    userDetails()
+    // userDetails()
   }, [Params.id]); // Add Params.id as a dependency to re-run the effect when the id changes
   
-const FavAction = async () =>{
-  try {
-    if (data && data.id) {
-      const FavData = {
-        id: Params.id,
-        genre: data.genres || [],
-        title: data.title || '',
-        action: scale ? 'remove' : 'add',
-        email: await email
-      };
-      axios.defaults.baseURL = "";
-      await axios.post("/api/Users/favourate", FavData)
+// const FavAction = async () =>{
+//   try {
+//     if (data && data.id) {
+//       const FavData = {
+//         id: Params.id,
+//         genre: data.genres || [],
+//         title: data.title || '',
+//         action: scale ? 'remove' : 'add',
+//         email: await email
+//       };
+//       axios.defaults.baseURL = "";
+//       await axios.post("/api/Users/favourate", FavData)
 
-    }
-  } catch (error) {
-    console.log(error+ 'data')
-  }
-}
+//     }
+//   } catch (error) {
+//     console.log(error+ 'data')
+//   }
+// }
 
 
   const formatMovieTitle = (title) => {
@@ -159,12 +158,12 @@ if (isLoading) {
          
         <div>
         <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Watch Trailer</button>
-            <button onClick={
-              ()=>{
-                setscale(!scale)
-                FavAction();
-              }
-            } className='mt-3 w-full py-2 px-4 text-center bg-blue-200 text-black rounded font-bold text-lg  transition-all flex flex-row gap-10 items-center justify-center'><p>{scale? "Added TO Favourate" :"Add TO Favourate"}</p><div><FaRegHeart className={scale ? 'scale-150 transition-all text-red-600': null}/></div></button>
+           {/* <button onClick={
+  ()=>{
+    setscale(!scale)
+    // FavAction();
+  }
+} className='mt-3 w-full py-2 px-4 text-center bg-blue-200 text-black rounded font-bold text-lg  transition-all flex flex-row gap-10 items-center justify-center'><p>{scale? "Added TO Favourate" :"Add TO Favourate"}</p><div><FaRegHeart className={scale ? 'scale-150 transition-all text-red-600': null}/></div></button> */}
             <button popoverTarget='suggest' className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-yellow-400 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
           <a href={`https://hdhub4u.spa/?s=${data.title || data.name}`} target='_blank' ><button className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-green-500 to-green-700 hover:scale-105 transition-all'>Download Now</button></a>
         </div>

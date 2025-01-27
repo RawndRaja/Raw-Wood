@@ -37,11 +37,11 @@ const userSchema = new mongoose.Schema({
     }],
     role:{
         type:String,
-        default:"guest"
+        default:"member"
     },
     status:{
         type:String,
-        default:"unauthorized"
+        default:"authorized"
     },
     Created_at:{
         type:Date,

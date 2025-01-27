@@ -7,6 +7,7 @@ const AboutUs = () => {
     <div className="bg-neutral-800 min-h-screen text-white font-sans">
       <div className="h-24"></div>
       {/* Header Section */}
+      <div className='flex flex-row gap-4 justify-center items-center'> <h3 className='text-red-500 ml-6 text-xl'>Note: </h3><h4 className='px-10'>This site is just a prototype model of orignal site. So, We are currently not able to update it from now onwards, Hence it is the final version of the site. We will update it soon. Thank you for your patience. </h4> </div>
       <header className="relative overflow-hidden bg-gradient-to-br from-neutral-700 to-neutral-800 text-center py-24">
         <div className="absolute inset-0 bg-neutral-600 opacity-10 rounded-full blur-3xl transform scale-125"></div>
         <h1 className="text-6xl font-extrabold tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 drop-shadow-lg">
