@@ -2,7 +2,6 @@ import User from "@/Modules/userModule";
 import {connect} from '@/dbConnection/dbConnection'
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcryptjs'
-import { sendEmail } from "@/helper/sendEmail";
 
 export async function POST(request: NextRequest){
     try {
