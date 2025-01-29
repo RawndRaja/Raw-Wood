@@ -6,7 +6,10 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
     const router = useRouter();
     const logout = async ()=>{
-        const response = await axios.get('/api/Users/logout')
+        const response = await axios.get('/api/Users/logout', {
+            url: '/api/Users/logout',
+            method: 'GET',
+        })
         console.log(response);
         router.push('/login');
         
