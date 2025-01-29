@@ -50,6 +50,7 @@ export default function LoginPage() {
       
       toast.success('Successfully logged in', toastConfig)
       router.push('/')
+      window.location.reload();
     } catch (error) {
       toast.error('Error logging in', toastConfig)
       console.error('Login error:', error)
