@@ -11,6 +11,7 @@ export default function Page() {
                 url: '/api/Users/logout',
             })
             router.replace('/auth/login');
+            window.location.reload();
         } catch (error) {
             console.log(error);
             
