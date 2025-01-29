@@ -9,6 +9,7 @@ export async function GET(req: NextRequest){
         }
         const response = NextResponse.json({message: "Logged out successfully"}, {status: 200})
         await response.cookies.delete("token");
+        return response;
        
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500})

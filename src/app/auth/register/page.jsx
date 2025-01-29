@@ -40,7 +40,6 @@ export default function LoginPage() {
 
     }else{
         setpasswordchecker(false)
-        console.log('passwords do not match')
   }
 }
   useEffect(()=>{
