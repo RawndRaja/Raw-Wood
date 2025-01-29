@@ -6,11 +6,15 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
     const router = useRouter();
     const logout = async ()=>{
-        const response = await axios.get('/api/Users/logout', {
-            url: '/api/Users/logout',
-        })
-        console.log(response);
-        router.push('/auth/login');
+        try {
+            const response = await axios.get('/api/Users/logout', {
+                url: '/api/Users/logout',
+            })
+            router.push('/auth/login');
+        } catch (error) {
+            console.log(error);
+            
+        }
         
     }
   return (
