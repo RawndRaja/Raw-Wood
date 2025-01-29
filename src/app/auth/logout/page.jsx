@@ -10,7 +10,7 @@ export default function Page() {
             const response = await axios.get('/api/Users/logout', {
                 url: '/api/Users/logout',
             })
-            router.push('/auth/login');
+            router.replace('/auth/login');
         } catch (error) {
             console.log(error);
             
