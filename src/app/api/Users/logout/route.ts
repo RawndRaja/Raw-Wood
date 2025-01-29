@@ -7,8 +7,9 @@ export async function GET(req: NextRequest){
         if (!token) {
             return NextResponse.json({error: "No token found"}, {status: 401})
         }
-        await req.cookies.delete("token");
-        return NextResponse.json({message: "Logged out successfully"}, {status: 200})
+        const response = NextResponse.json({message: "Logged out successfully"}, {status: 200})
+        await response.cookies.delete("token");
+       
     } catch (error: any) {
         return NextResponse.json({error: error.message}, {status: 500})
     }

@@ -8,7 +8,6 @@ export default function Page() {
     const logout = async ()=>{
         const response = await axios.get('/api/Users/logout', {
             url: '/api/Users/logout',
-            method: 'GET',
         })
         console.log(response);
         router.push('/auth/login');
