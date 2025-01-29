@@ -18,7 +18,7 @@ export default function Page() {
     <div>
         <div className="h-24"></div>
         <div>
-            <form className='w-screen h-screen flex flex-col justify-center items-center' onSubmit={
+            <div className='w-screen h-screen flex flex-col justify-center items-center' onSubmit={
                 (e) => {
                     e.preventDefault();
                 }
@@ -29,7 +29,7 @@ export default function Page() {
                         logout
                     } className='border border-neutral-400 p-4 bg-neutral-500 hover:bg-neutral-600 transition-all'>Logout Now</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
   )
