@@ -11,7 +11,7 @@ export default function Page() {
             method: 'GET',
         })
         console.log(response);
-        router.push('/login');
+        router.push('/auth/login');
         
     }
   return (
