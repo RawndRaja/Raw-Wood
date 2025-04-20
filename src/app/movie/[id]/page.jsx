@@ -109,7 +109,7 @@ if (isLoading) {
   return (
     
     <div>
-        <div popover='auto' className='rounded-lg w-full sm:w-96 bg-neutral-700 backdrop-blur-md h-96 text-white lg:w-[45vw] lg:h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' id="suggest">
+        <div popover='auto' className='rounded-lg w-full sm:w-96 bg-neutral-700 backdrop-blur-md h-96 text-white lg:w-[45vw] lg:h-[80vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' id="suggest">
       <div className='text-center lg:text-xl' >
       Watch Your Favaourate movies Now.⚡ <br />
       Top Movies 🎥 Avilable at Raw Cinemas.
@@ -131,6 +131,16 @@ if (isLoading) {
             target='_blank'>
             <button className='mt-3 h-16 lg:h-full w-80 py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>
               Watch Now. <br /> at cineb.rs
+            </button>
+          </a>
+        </div>
+        <div className='mt-4'>
+          <h3>Recommended for All types of Movies.🎥</h3>
+          <a className='mt-2' 
+            href={`https://www.desicinema.org/?s=${(data.title || data.name)}`} 
+            target='_blank'>
+            <button className='mt-3 h-16 lg:h-full w-80 py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>
+              Watch Now. <br /> at Desicinema.org
             </button>
           </a>
         </div>
@@ -165,7 +175,7 @@ if (isLoading) {
   }
 } className='mt-3 w-full py-2 px-4 text-center bg-blue-200 text-black rounded font-bold text-lg  transition-all flex flex-row gap-10 items-center justify-center'><p>{scale? "Added TO Favourate" :"Add TO Favourate"}</p><div><FaRegHeart className={scale ? 'scale-150 transition-all text-red-600': null}/></div></button> */}
             <button popoverTarget='suggest' className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-yellow-400 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
-          <a href={`https://hdhub4u.spa/?s=${data.title || data.name}`} target='_blank' ><button className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-green-500 to-green-700 hover:scale-105 transition-all'>Download Now</button></a>
+          <a href={`https://hdhub4u.exposed/?s=${data.title || data.name}`} target='_blank' ><button className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-green-500 to-green-700 hover:scale-105 transition-all'>Download Now</button></a>
         </div>
 
           </div>
