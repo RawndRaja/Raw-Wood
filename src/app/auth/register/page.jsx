@@ -22,6 +22,7 @@ export default function LoginPage() {
   const [terms, setTerms] = useState(false)
   const [confirmPassword, setconfirmPassword] = useState('')
   const [passwordchecker, setpasswordchecker] = useState(false)
+  const [ShowConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
     FullName: "",
@@ -36,7 +37,6 @@ export default function LoginPage() {
     }
     if(formData.password === confirmPassword){
         setpasswordchecker(true)
-        console.log('passwords match')
 
     }else{
         setpasswordchecker(false)
@@ -161,7 +161,7 @@ export default function LoginPage() {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type={ShowConfirmPassword ? "text" : "password"}
                 value={confirmPassword}
                 onChange={
                     (e)=>{
@@ -175,10 +175,10 @@ export default function LoginPage() {
               />
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowConfirmPassword(!ShowConfirmPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2"
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                {ShowConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             <div id="error"> { passwordchecker ? null : <div className="text-red-500">Passwords do not match</div>} </div>

@@ -92,7 +92,7 @@ const AboutUs = () => {
           ].map((reason, index) => (
             <div
               key={index}
-              className="flex-1 p-6 bg-neutral-800 rounded-xl shadow-md hover:shadow-lg transition-shadow hover:scale-105"
+              className="p-6 bg-neutral-700 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300"
             >
               <h3 className="text-2xl font-semibold text-purple-400 mb-4">
                 {reason.title}
