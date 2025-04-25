@@ -41,7 +41,7 @@ try {
   
 }
   }
-
+  // todo build a search bar 
   const nowPlaying = async () => {
     try {
       setIsLoading(true); // Set isLoading to true
